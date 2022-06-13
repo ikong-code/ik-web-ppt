@@ -1,0 +1,18 @@
+.flex{
+  display: flex;
+}
+.flex-column{
+  display: flex;
+  flex-direction: column;
+}
+.flex-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex-1{
+  flex: 1
+}
+.pointer{
+  cursor: pointer;
+}

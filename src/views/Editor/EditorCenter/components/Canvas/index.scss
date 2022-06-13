@@ -1,0 +1,19 @@
+.canvas{
+  user-select: none;
+  overflow: hidden;
+  background-color: $lightGray;
+  background-color: #f9f9f9;
+  position: relative;
+  height: calc(100% - 40px);
+}
+
+.viewport-wrapper {
+  position: absolute;
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
+}
+.viewport {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 0 0;
+}

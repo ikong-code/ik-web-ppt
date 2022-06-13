@@ -1,0 +1,10 @@
+.content-center{
+  &__tools{
+    justify-content: space-around;
+    height: 40px;
+    border-bottom: 1px solid $borderColor;
+    .tools-item{
+      margin: 0 10px;
+    }
+  }
+}
