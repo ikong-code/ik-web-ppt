@@ -12,33 +12,27 @@ export default (canvasRef: any) => {
   const viewportRatio = useSelector((state: any) => state.canvas.viewportRatio)
   const dispatch = useDispatch()
 
-  console.log(canvasPercentage, 'canvasPercentage')
-  console.log(viewportRatio, 'viewportRatio')
-
-
   // 计算画布可视区域的位置
   const setViewportPosition = () => {
     if (!canvasRef.current) return
     const canvasWidth = canvasRef.current.clientWidth
     const canvasHeight = canvasRef.current.clientHeight
-    console.log(canvasWidth, 'canvasWidth', canvasHeight, 'canvasHeight')
-    console.log(canvasHeight / canvasWidth > viewportRatio, 'ratio')
     if (canvasHeight / canvasWidth > viewportRatio) {
       const viewportActualWidth = canvasWidth * (canvasPercentage / 100)
-      console.log(viewportActualWidth, 'viewportActualWidth', viewportActualWidth / VIEWPORT_SIZE, 'scale')
+
       dispatch(setCanvasScale(viewportActualWidth / VIEWPORT_SIZE))
       setViewportLeft((canvasWidth - viewportActualWidth) / 2)
       setViewportTop((canvasHeight - viewportActualWidth * viewportRatio) / 2)
+
     } else {
+
       const viewportActualHeight = canvasHeight * (canvasPercentage / 100)
       dispatch(setCanvasScale(viewportActualHeight / (VIEWPORT_SIZE * viewportRatio)))
       setViewportLeft((canvasWidth - viewportActualHeight / viewportRatio) / 2)
       setViewportTop((canvasHeight - viewportActualHeight) / 2)
+
     }
   }
-
-  console.log(viewportLeft, 'viewportLeft.current')
-  console.log(viewportTop, 'viewportTop.current')
 
   // 监听画布尺寸发生变化时，更新可视区域的位置
   const resizeObserver = new ResizeObserver(setViewportPosition)

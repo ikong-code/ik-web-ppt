@@ -1,0 +1,133 @@
+.operate {
+  position: absolute;
+  z-index: 100;
+  user-select: none;
+
+  &.multi-select {
+    opacity: 0;
+  }
+
+  .animation-index {
+    position: absolute;
+    top: 0;
+    left: -24px;
+    font-size: 12px;
+    width: 18px;
+    height: 18px;
+    background-color: #fff;
+    color: $themeColor;
+    border: 1px solid $themeColor;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.border-line {
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 0;
+  top: 0;
+  border: 0 dashed $themeColor;
+
+  &.top {
+    border-top-width: 1px;
+  }
+  &.bottom {
+    border-bottom-width: 1px;
+  }
+  &.left {
+    border-left-width: 1px;
+  }
+  &.right {
+    border-right-width: 1px;
+  }
+
+  &.wide {
+    &::before {
+      content: '';
+      position: absolute;
+      background: transparent;
+      cursor: move;
+    }
+
+    &.top::before {
+      top: -8px;
+      left: -8px;
+      width: calc(100% + 16px);
+      height: 16px;
+    }
+    &.bottom::before {
+      bottom: -8px;
+      left: -8px;
+      width: calc(100% + 16px);
+      height: 16px;
+    }
+    &.left::before {
+      top: -8px;
+      left: -8px;
+      width: 16px;
+      height: calc(100% + 16px);
+    }
+    &.right::before {
+      top: -8px;
+      right: -8px;
+      width: 16px;
+      height: calc(100% + 16px);
+    }
+  }
+}
+
+.resize-handler {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  left: 0;
+  top: 0;
+  margin: -5px 0 0 -5px;
+  border: 1px solid $themeColor;
+  background-color: #fff;
+  border-radius: 1px;
+
+  &.left-top.rotate-0,
+  &.right-bottom.rotate-0,
+  &.left.rotate-45,
+  &.right.rotate-45,
+  &.left-bottom.rotate-90,
+  &.right-top.rotate-90,
+  &.top.rotate-135,
+  &.bottom.rotate-135 {
+    cursor: nwse-resize;
+  }
+  &.top.rotate-0,
+  &.bottom.rotate-0,
+  &.left-top.rotate-45,
+  &.right-bottom.rotate-45,
+  &.left.rotate-90,
+  &.right.rotate-90,
+  &.left-bottom.rotate-135,
+  &.right-top.rotate-135 {
+    cursor: ns-resize;
+  }
+  &.left-bottom.rotate-0,
+  &.right-top.rotate-0,
+  &.top.rotate-45,
+  &.bottom.rotate-45,
+  &.left-top.rotate-90,
+  &.right-bottom.rotate-90,
+  &.left.rotate-135,
+  &.right.rotate-135 {
+    cursor: nesw-resize;
+  }
+  &.left.rotate-0,
+  &.right.rotate-0,
+  &.left-bottom.rotate-45,
+  &.right-top.rotate-45,
+  &.top.rotate-90,
+  &.bottom.rotate-90,
+  &.left-top.rotate-135,
+  &.right-bottom.rotate-135 {
+    cursor: ew-resize;
+  }
+}

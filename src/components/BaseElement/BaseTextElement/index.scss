@@ -1,0 +1,38 @@
+.editable-element-container {
+  position: absolute;
+
+  &.lock .element-content {
+    cursor: default;
+  }
+  .text-ele-content{
+    outline: none;
+    cursor: text;
+    word-break: break-all;
+  }
+
+  .element-content {
+    position: relative;
+    padding: 10px;
+    line-height: 1.5;
+    word-break: break-word;
+    cursor: move;
+  
+    .text {
+      position: relative;
+    }
+  }
+
+  .drag-handler {
+    height: 10px;
+    position: absolute;
+    left: 0;
+    right: 0;
+  
+    &.top {
+      top: 0;
+    }
+    &.bottom {
+      bottom: 0;
+    }
+  }
+}

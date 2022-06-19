@@ -1,0 +1,42 @@
+.editable-element-image {
+  position: absolute;
+
+  &.lock .element-content {
+    cursor: default;
+  }
+  .rotate-wrapper {
+    width: 100%;
+    height: 100%;
+  }
+  .element-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    cursor: move;
+  
+    .image-content {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+    img {
+      position: absolute;
+      width: 100%;
+    }
+  }
+
+  .drag-handler {
+    height: 10px;
+    position: absolute;
+    left: 0;
+    right: 0;
+  
+    &.top {
+      top: 0;
+    }
+    &.bottom {
+      bottom: 0;
+    }
+  }
+}

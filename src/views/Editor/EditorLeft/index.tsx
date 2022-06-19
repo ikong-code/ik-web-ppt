@@ -1,20 +1,29 @@
 import { useState } from 'react'
 import { Popover } from 'antd'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { useSelector, useDispatch } from 'react-redux'
+import { SlideState } from '@/store/types'
+import { Slide } from '@/types/slides'
 import { fillDigit } from '@/utils/common'
+import useSlideHandler from '@/hooks/useSlideHandler'
 import TemplateList from './TemplateList'
+import ThumbnailSlide from './ThumbnailSlide'
+import { updateSlideIndex } from '@/store/slidesReducer'
 
 const mockList = new Array(10).fill('').map((item, idx) => {
   return { id: (idx + 1).toString(), name: Math.random().toString(36).slice(2) }
 })
 const EditorLeft = () => {
+  const slidesList = useSelector((state: SlideState) => state.slides.slides)
+  const slideIndex = useSelector((state: SlideState) => state.slides.slideIndex)
+  const dispatch = useDispatch()
+
+  const { createSlide, updateSlidesList, resetSlides, deleteSlide } = useSlideHandler()
+
   const [popVisible, setPopVisible] = useState(false)
 
-  const [list, setList] = useState(mockList)
+  // const [list, setList] = useState(mockList)
 
-  const handleAddOne = () => {
-    console.log('增加一个幻灯片')
-  }
 
   const handleSelect = () => {
     setPopVisible(false)
@@ -30,18 +39,26 @@ const EditorLeft = () => {
     if (!destination) {
       return;
     }
-    const target = list[source.index]
-    const newList = [...list]
+    const target = slidesList[source.index]
+    const newList = [...slidesList]
     newList.splice(source.index, 1)
     const moveAferList = [...newList.slice(0, destination.index), target, ...newList.slice(destination.index)]
-    setList([...moveAferList])
+    updateSlidesList([...moveAferList])
   };
 
+
+  const handleSelectOne = (id: string) => {
+    const copySlidesList = [...slidesList]
+    const tarIdx = copySlidesList.findIndex(item => item.id === id)
+    if(tarIdx > -1) {
+      dispatch(updateSlideIndex(tarIdx))
+    }
+  }
 
   return (
     <div className="content-left">
       <div className="content-left__top flex">
-        <div className="add-one flex-center flex-1" onClick={handleAddOne}>
+        <div className="add-one flex-center flex-1" onClick={createSlide}>
           添加幻灯片
         </div>
         <Popover
@@ -64,8 +81,8 @@ const EditorLeft = () => {
             {(provided) => {
               return (
                 <div {...provided.droppableProps} ref={provided.innerRef}>
-                  {list.map((item, idx) => (
-                    <Draggable key={item.name} draggableId={item.name} index={idx}>
+                  {slidesList.map((item: Slide, idx: number) => (
+                    <Draggable key={item.id} draggableId={item.id} index={idx}>
                       {(provided) => {
                         return <div
                           className="thumbnails-item flex-center"
@@ -73,10 +90,12 @@ const EditorLeft = () => {
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
                           key={item.id}
+                          onClick={() => handleSelectOne(item.id)}
                         >
                           <div className="order-number">
                             {fillDigit(idx + 1, 2)}
-                          </div>: {item.id}
+                          </div>
+                          <ThumbnailSlide slide={item} size={120} visible={slideIndex === idx} />
                         </div>
                       }}
                     </Draggable>
