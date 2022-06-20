@@ -28,10 +28,14 @@ const HeaderTools = () => {
     <div className="content-center__tools flex">
       <div className="tools-left flex">
         <Tooltip placement="top" title={"撤销"}>
-          <div className="tools-item flex-center pointer">撤销</div>
+          <div className="tools-item flex-center pointer">
+            <i className="iconfont icon-houtui-kong" />
+          </div>
         </Tooltip>
         <Tooltip placement="top" title={"重做"}>
-          <div className="tools-item flex-center pointer">重做</div>
+          <div className="tools-item flex-center pointer">
+            <i className="iconfont icon-qianjin-kong" />
+          </div>
         </Tooltip>
       </div>
       <div className="tools-center flex">
@@ -40,25 +44,35 @@ const HeaderTools = () => {
             className="tools-item flex-center pointer"
             onClick={handleDrawText}
           >
-            文字
+            <i className="iconfont icon-wenben" />
           </div>
         </Tooltip>
         <Tooltip placement="top" title={"图片"}>
           <div className="tools-item flex-center pointer">
-            <FileInput onChange={insertImageElement}>图片</FileInput>
+            <FileInput onChange={insertImageElement}>
+              <i className="iconfont icon-icon1" />
+            </FileInput>
           </div>
         </Tooltip>
         <Tooltip placement="top" title={"插入形状"}>
-          <div className="tools-item flex-center pointer">插入形状</div>
+          <div className="tools-item flex-center pointer">
+            <i className="iconfont icon-xingzhuang" />
+          </div>
         </Tooltip>
         <Tooltip placement="top" title={"插入线条"}>
-          <div className="tools-item flex-center pointer">插入线条</div>
+          <div className="tools-item flex-center pointer">
+            <i className="iconfont icon-xiantiao" />
+          </div>
         </Tooltip>
         <Tooltip placement="top" title={"插入表格"}>
-          <div className="tools-item flex-center pointer">插入表格</div>
+          <div className="tools-item flex-center pointer">
+            <i className="iconfont icon-biaoge" />
+          </div>
         </Tooltip>
         <Tooltip placement="top" title={"插入音视频"}>
-          <div className="tools-item flex-center pointer">插入音视频</div>
+          <div className="tools-item flex-center pointer">
+            <i className="iconfont icon-shouye" />
+          </div>
         </Tooltip>
       </div>
       <div className="tools-right flex">

@@ -1,0 +1,184 @@
+{
+  "id": "3474382",
+  "name": "web-ppt",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "658044",
+      "name": "解锁",
+      "font_class": "jiesuo",
+      "unicode": "e669",
+      "unicode_decimal": 58985
+    },
+    {
+      "icon_id": "679775",
+      "name": "锁定",
+      "font_class": "suoding",
+      "unicode": "e6e6",
+      "unicode_decimal": 59110
+    },
+    {
+      "icon_id": "768731",
+      "name": "视频问诊",
+      "font_class": "shouye",
+      "unicode": "e63e",
+      "unicode_decimal": 58942
+    },
+    {
+      "icon_id": "909425",
+      "name": "i-颜色",
+      "font_class": "yanse",
+      "unicode": "e66a",
+      "unicode_decimal": 58986
+    },
+    {
+      "icon_id": "1002614",
+      "name": "文本",
+      "font_class": "icon",
+      "unicode": "e693",
+      "unicode_decimal": 59027
+    },
+    {
+      "icon_id": "1002631",
+      "name": "图片",
+      "font_class": "icon1",
+      "unicode": "e694",
+      "unicode_decimal": 59028
+    },
+    {
+      "icon_id": "1082780",
+      "name": "编辑",
+      "font_class": "icon2",
+      "unicode": "e699",
+      "unicode_decimal": 59033
+    },
+    {
+      "icon_id": "1790510",
+      "name": "斜体",
+      "font_class": "xieti",
+      "unicode": "e700",
+      "unicode_decimal": 59136
+    },
+    {
+      "icon_id": "3851370",
+      "name": "删除线",
+      "font_class": "shanchuxian",
+      "unicode": "e664",
+      "unicode_decimal": 58980
+    },
+    {
+      "icon_id": "3851383",
+      "name": "下划线",
+      "font_class": "xiahuaxian",
+      "unicode": "e66b",
+      "unicode_decimal": 58987
+    },
+    {
+      "icon_id": "4266194",
+      "name": "右旋转",
+      "font_class": "youxuanzhuan",
+      "unicode": "e720",
+      "unicode_decimal": 59168
+    },
+    {
+      "icon_id": "4266201",
+      "name": "左旋转",
+      "font_class": "zuoxuanzhuan",
+      "unicode": "e722",
+      "unicode_decimal": 59170
+    },
+    {
+      "icon_id": "4315716",
+      "name": "文本",
+      "font_class": "wenben",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    },
+    {
+      "icon_id": "4553725",
+      "name": "加粗",
+      "font_class": "jiacu",
+      "unicode": "e7db",
+      "unicode_decimal": 59355
+    },
+    {
+      "icon_id": "5110575",
+      "name": "前进-空",
+      "font_class": "qianjin-kong",
+      "unicode": "e654",
+      "unicode_decimal": 58964
+    },
+    {
+      "icon_id": "5111170",
+      "name": "后退-空",
+      "font_class": "houtui-kong",
+      "unicode": "e657",
+      "unicode_decimal": 58967
+    },
+    {
+      "icon_id": "6690009",
+      "name": "重置",
+      "font_class": "zhongzhi",
+      "unicode": "e63a",
+      "unicode_decimal": 58938
+    },
+    {
+      "icon_id": "6834996",
+      "name": "文件-文件夹",
+      "font_class": "wj-wjj",
+      "unicode": "e7b8",
+      "unicode_decimal": 59320
+    },
+    {
+      "icon_id": "6965093",
+      "name": "投影演示",
+      "font_class": "touyingyanshi",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "9319387",
+      "name": "形状",
+      "font_class": "xingzhuang",
+      "unicode": "e82b",
+      "unicode_decimal": 59435
+    },
+    {
+      "icon_id": "11641852",
+      "name": "表格",
+      "font_class": "biaoge",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "12561864",
+      "name": "左对齐",
+      "font_class": "zuoduiqi-",
+      "unicode": "e642",
+      "unicode_decimal": 58946
+    },
+    {
+      "icon_id": "12561875",
+      "name": "右对齐",
+      "font_class": "youduiqi-",
+      "unicode": "e643",
+      "unicode_decimal": 58947
+    },
+    {
+      "icon_id": "12562368",
+      "name": "水平居中",
+      "font_class": "shuipingjuzhong-",
+      "unicode": "e647",
+      "unicode_decimal": 58951
+    },
+    {
+      "icon_id": "17544324",
+      "name": "线条",
+      "font_class": "xiantiao",
+      "unicode": "e701",
+      "unicode_decimal": 59137
+    }
+  ]
+}

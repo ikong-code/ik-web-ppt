@@ -1,10 +1,9 @@
-
-.ik-web-ppt{
+.ik-web-ppt {
   height: 100%;
 }
-.ikppt-editor{
+.ikppt-editor {
   height: 100%;
-  &__header{
+  &__header {
     height: 40px;
     background-color: #fff;
     user-select: none;
@@ -12,46 +11,54 @@
     display: flex;
     justify-content: space-between;
     padding: 0 10px;
-    .left{
+    .left {
       display: flex;
-      .left-item{
+      .left-item {
         height: 100%;
         font-size: 14px;
         padding: 0 10px;
         display: flex;
         justify-content: center;
         align-items: center;
-        transition: background-color .2s;
+        transition: background-color 0.2s;
         cursor: pointer;
-        &:hover{
-          background-color: #eee
+        &:hover {
+          background-color: #eee;
+        }
+
+        i {
+          font-size: 18px;
+          margin-right: 4px;
         }
       }
     }
-    .right{
-      .right-item{
+    .right {
+      .right-item {
         height: 100%;
-        font-size: 14px;
+        font-size: 18px;
         padding: 0 10px;
         display: flex;
         justify-content: center;
         align-items: center;
+        i {
+          font-size: 20px;
+        }
       }
     }
   }
-  &__content{
+  &__content {
     height: calc(100% - 40px);
     display: flex;
-    .content-left{
+    .content-left {
       width: 160px;
       height: 100%;
       flex-shrink: 0;
       cursor: pointer;
       border-right: 1px solid $borderColor;
-      &__top{
+      &__top {
         height: 40px;
         border-bottom: 1px solid $borderColor;
-        .select-btn{
+        .select-btn {
           width: 30px;
           display: flex;
           justify-content: center;
@@ -59,24 +66,24 @@
           border-left: 1px solid #eee;
         }
       }
-      &__bottom{
+      &__bottom {
         height: calc(100% - 40px);
         overflow: auto;
-        .thumbnails-item{
+        .thumbnails-item {
           padding: 5px 0;
-          .order-number{
+          .order-number {
             width: 20px;
             cursor: grab;
           }
         }
       }
     }
-    .content-right{
+    .content-right {
       width: 260px;
       height: 100%;
       border-left: 1px solid $borderColor;
     }
-    .content-center{
+    .content-center {
       width: calc(100% - 160px - 260px);
       .center-top {
         height: 40px;

@@ -1,10 +1,14 @@
-.content-center{
-  &__tools{
+.content-center {
+  &__tools {
     justify-content: space-around;
     height: 40px;
     border-bottom: 1px solid $borderColor;
-    .tools-item{
+    .tools-item {
       margin: 0 10px;
+      i {
+        font-size: 22px;
+        color: #41464b;
+      }
     }
   }
 }
