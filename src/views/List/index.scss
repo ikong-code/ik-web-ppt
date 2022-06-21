@@ -12,55 +12,11 @@
   &__content {
     height: calc(100% - 80px);
     width: 1200px;
-    margin: 0 auto;
-    .ant-tabs {
-      height: 100%;
-    }
-    .ant-tabs-content-holder {
-      height: calc(100% - 62px);
-      overflow: auto;
-    }
-    .ant-tabs-nav-wrap {
-      padding: 0 8px;
-    }
+    margin: 20px auto;
+   
     .loading {
       width: 100%;
       text-align: center;
     }
-
-    .ant-tabs-tabpane {
-      display: flex;
-      flex-wrap: wrap;
-      min-width: 300px;
-      .ant-card {
-        flex: 1;
-        min-width: 300px;
-        max-width: 384px;
-        margin: 8px;
-      }
-    }
-    // @media screen and (min-width: 1px) and (max-width: 980px) {
-    //   .ant-tabs-content {
-    //     min-width: 980px;
-    //     overflow-x: auto;
-    //     .ant-card {
-    //       flex-shrink: 0;
-    //       max-width: 300px;
-    //     }
-    //   }
-    // }
-
-    // /* 在 600 像素或更小的屏幕上，将背景色设置为橄榄色 */
-    // @media screen and (min-width: 980px) and (max-width: 1296px) {
-    //   .ant-card {
-    //     max-width: 405px;
-    //     min-width: 300px;
-    //   }
-    // }
-    // @media screen and (min-width: 1296) {
-    //   .ant-card {
-    //     min-width: 300px;
-    //   }
-    // }
   }
 }
