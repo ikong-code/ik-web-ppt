@@ -6,7 +6,7 @@ import { UploadOutlined } from '@ant-design/icons'
 import { Form, FormItem, Input, NumberPicker, Upload } from "@formily/antd"
 import { schema } from "./config"
 
-const IDUpload = (props) => {
+const IDUpload = (props: any) => {
   return (
     <Upload
       {...props}
@@ -20,7 +20,7 @@ const IDUpload = (props) => {
   )
 }
 
-const CreatePPt = ({ params = {}, onOk, onCancel }) => {
+const CreatePPt = ({ params = {}, onOk, onCancel }: any) => {
   const form = useMemo(() => createForm(), [])
 
   const { title = "创建" } = params

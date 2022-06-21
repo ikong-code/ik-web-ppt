@@ -107,7 +107,7 @@ const CanvasContainer = () => {
         }}
       >
         <div className="operates">
-          {(alignmentLines.current || []).map((line, index: number) => {
+          {((alignmentLines.current || []) as any).map((line: any, index: number) => {
             return (
               <AlignmentLine
                 key={index}

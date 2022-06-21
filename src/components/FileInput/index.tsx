@@ -4,7 +4,7 @@ import { message } from "antd"
 interface IProps {
   accept: string
   children: ReactNode | string | null
-  onChange: (e: FileList) => void
+  onChange: (e: any) => void
 }
 
 const FileInput = ({ accept, children, onChange }: IProps) => {
@@ -16,7 +16,7 @@ const FileInput = ({ accept, children, onChange }: IProps) => {
     inputRef.current.click()
   }
 
-  const handleChange = (e: InputEvent) => {
+  const handleChange = (e: any) => {
     const files = (e.target as HTMLInputElement).files
 
     if (files && files[0]) {

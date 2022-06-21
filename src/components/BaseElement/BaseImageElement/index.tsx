@@ -8,9 +8,9 @@ import "./index.scss"
 import classNames from "classnames"
 
 interface IProps {
-  elementInfo: PPTTextElement
+  elementInfo: PPTTextElement | any
   contextmenus?: () => ContextmenuItem[]
-  onSelectElement: (
+  onSelectElement?: (
     e: MouseEvent,
     elementInfo: PPTElement,
     canMove: boolean,

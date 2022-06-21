@@ -11,7 +11,8 @@ interface IProps {
 
 const ThumbnailSlideElement = ({ elementInfo, elementIndex }: IProps) => {
 
-  const handleSelectElement = (e) => {
+  const handleSelectElement = () => {
+    console.log(111111111111)
   }
   const currentElementComponent = useMemo(() => {
     if(elementInfo.type === 'text') {

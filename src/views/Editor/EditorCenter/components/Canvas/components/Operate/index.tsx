@@ -13,9 +13,9 @@ interface IProps {
   isActiveGroupElement: boolean;
   isMultiSelect?: boolean;
   rotateElement: (el: PPTElement) => void;
-  scaleElement: (e: MouseEventHandler<HTMLDivElement>, el: PPTElement, command: OperateResizeHandler) => void;
+  scaleElement: (e: any, el: PPTElement, command: OperateResizeHandler) => void;
   openLinkDialog: () => void;
-  dragLineElement: (e: MouseEventHandler<HTMLDivElement>, element: PPTElement, command: OperateLineHandler) => void
+  dragLineElement: (e: any, element: PPTElement, command: OperateLineHandler) => void
 }
 
 const Operate = ({

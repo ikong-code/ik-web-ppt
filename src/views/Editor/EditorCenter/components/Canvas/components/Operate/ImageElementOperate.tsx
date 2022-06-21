@@ -7,7 +7,7 @@ import BorderLine from './BorderLine'
 import ResizeHandler from './ResizeHandler'
 
 interface IProps {
-  elementInfo: PPTTextElement;
+  elementInfo: PPTTextElement | any;
   handlerVisible: boolean;
   rotateElement: (element: PPTTextElement) => void;
   scaleElement: (e: MouseEventHandler<HTMLDivElement>, element: PPTTextElement, command: OperateResizeHandler) => void;
@@ -25,7 +25,7 @@ const ImageElementOperate = ({ elementInfo, handlerVisible, rotateElement, scale
 
   const { resizeHandlers, borderLines } = useCommonOperate(scaleWidth, scaleHeight)
 
-  const handleMouseDown = (event: MouseEventHandler<HTMLDivElement>, direction: string) => {
+  const handleMouseDown = (event: MouseEventHandler<HTMLDivElement>, direction: any) => {
     scaleElement(event, elementInfo, direction)
   }
   return <div className="text-element-operate">

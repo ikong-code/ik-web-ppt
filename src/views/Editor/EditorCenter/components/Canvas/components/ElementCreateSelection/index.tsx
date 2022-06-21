@@ -24,13 +24,13 @@ const ElementCreateSelection = ({ onCreatedElement }: IProps) => {
     return ctrlKeyState || shiftKeyState
   }, [ctrlKeyState, shiftKeyState])
   
-  const handleCreated = (values: CreateElementSelectionData) => {
+  const handleCreated = (values: any) => {
     onCreatedElement(values)
   }
 
    // 鼠标拖动创建元素生成位置大小
     // 获取范围的起始位置和终点位置
-    const createSelection = (e: MouseEvent) => {
+    const createSelection = (e: any) => {
       e.stopPropagation();
       let isMouseDown = true
 
@@ -168,7 +168,7 @@ const ElementCreateSelection = ({ onCreatedElement }: IProps) => {
     ref={selectionRef}
     onMouseDown={createSelection}
   >
-  {start.current && end.current && <div className="['selection', creatingElement.type]" style={position}>
+  {start.current && end.current && <div>
 
     // 绘制线条专用
     <svg

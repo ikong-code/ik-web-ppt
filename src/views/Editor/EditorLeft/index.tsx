@@ -14,8 +14,8 @@ const mockList = new Array(10).fill('').map((item, idx) => {
   return { id: (idx + 1).toString(), name: Math.random().toString(36).slice(2) }
 })
 const EditorLeft = () => {
-  const slidesList = useSelector((state: SlideState) => state.slides.slides)
-  const slideIndex = useSelector((state: SlideState) => state.slides.slideIndex)
+  const slidesList = useSelector((state: any) => state.slides.slides)
+  const slideIndex = useSelector((state: any) => state.slides.slideIndex)
   const dispatch = useDispatch()
 
   const { createSlide, updateSlidesList, resetSlides, deleteSlide } = useSlideHandler()

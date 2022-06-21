@@ -96,7 +96,7 @@ const getOppositePoint = (direction: string, points: ReturnType<typeof getRotate
 
 export default (
   elementList: PPTElement[],
-  alignmentLines: AlignmentLineProps[] | null,
+  alignmentLines: AlignmentLineProps[] | any,
 ) => {
 
   const viewportRatio = useSelector((state: any) => state.canvas.viewportRatio)
