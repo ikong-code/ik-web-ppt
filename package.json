@@ -8,13 +8,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@formily/antd": "^2.1.6",
+    "@formily/core": "^2.1.6",
+    "@formily/react": "^2.1.6",
     "@reduxjs/toolkit": "^1.8.2",
+    "moment": "^2.29.3",
     "postcss": "8.1.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-redux": "^8.0.2"
+    "react-redux": "^8.0.2",
+    "react-router": "6.1.0"
   },
   "devDependencies": {
+    "@ant-design/icons": "^4.7.0",
     "@types/lodash": "^4.14.182",
     "@types/node": "^17.0.38",
     "@types/react": "^18.0.0",
@@ -24,9 +30,11 @@
     "antd": "^4.21.0",
     "autoprefixer": "^10.4.7",
     "classnames": "^2.3.1",
+    "less": "4.1.1",
     "lodash": "^4.17.21",
     "react-beautiful-dnd": "^13.1.0",
-    "react-router-dom": "^6.3.0",
+    "react-is": "^18.2.0",
+    "react-router-dom": "6.1.0",
     "sass": "^1.52.1",
     "typescript": "^4.6.3",
     "vite": "^2.9.9"

@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react"
 import { Button, Tabs, Spin } from "antd"
 import { dataSource, column } from "./config"
+import { useNavigate } from 'react-router-dom'
 import CardItem from "./CardItem"
+import useModal from "@/hooks/useModal"
 import CreatePPt from "./CreateModal"
 import "./index.scss"
 
@@ -16,6 +18,8 @@ const mockList = new Array(11).fill("").map((item, idx) => {
 })
 
 const List = () => {
+  const navigate = useNavigate()
+  const createModalVisible = useModal()
   const [loading, setLoading] = useState(false)
 
   const [list, setList] = useState<any>([])
@@ -35,7 +39,15 @@ const List = () => {
     })
   }, [])
 
-  const handleCreate = () => {}
+  const handleCreate = () => {
+    createModalVisible.open({ title: "新建" })
+  }
+
+  const handleCreateOk = () => {
+    navigate('/ppt')
+
+    createModalVisible.close()
+  }
 
   return (
     <div className="ppt-list">
@@ -68,6 +80,13 @@ const List = () => {
             ))}
           </TabPane>
         </Tabs>
+        {createModalVisible.visible && (
+          <CreatePPt
+            params={createModalVisible.params}
+            onOk={handleCreateOk}
+            onCancel={() => createModalVisible.close()}
+          />
+        )}
       </div>
     </div>
   )

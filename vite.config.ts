@@ -13,6 +13,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
+      "~antd": "antd",
     },
   },
   plugins: [react()],
@@ -29,13 +30,16 @@ export default defineConfig({
         // additionalData 的内容会在每个 scss 文件的开头自动注入
         additionalData: `@import "${variablePath}";`,
       },
+      less: {
+        javascriptEnabled: true,
+      },
     },
     // 进行 PostCSS 配置
     postcss: {
       plugins: [
         autoprefixer({
           overrideBrowserslist: ["Chrome > 40", "ff > 31", "ie 11"],
-        }),
+        }) as any,
       ],
     },
   },
