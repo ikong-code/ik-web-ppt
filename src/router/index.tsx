@@ -2,7 +2,7 @@ import { useRoutes } from "react-router-dom"
 import { Suspense, lazy } from "react"
 const routes = [
   {
-    path: "/list",
+    path: "/",
     component: lazy(() => import("../views/List")),
   },
   {

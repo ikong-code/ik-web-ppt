@@ -1,18 +1,36 @@
-export const column = [
+import { Space, Buttons } from
+
+export const getColumns = [
   {
-    title: "姓名",
+    title: "PPT名称",
     dataIndex: "name",
     key: "name",
   },
   {
-    title: "年龄",
-    dataIndex: "age",
-    key: "age",
+    title: "描述",
+    dataIndex: "desc",
+    key: "desc",
   },
   {
-    title: "住址",
-    dataIndex: "address",
-    key: "address",
+    title: "作者",
+    dataIndex: "author",
+    key: "author",
+  },
+  {
+    title: "发布时间",
+    dataIndex: "createTime",
+    key: "createTime",
+  },
+  {
+    title: "操作",
+    dataIndex: "operate",
+    key: "operate",
+    render: (text: string, record: any) => {
+      return <Space>
+        <Button>{'演示'}</Button>
+        <Button>{'演示'}</Button>
+      </Space>
+    }
   },
 ]
 
