@@ -2,7 +2,7 @@ import { useMemo } from "react"
 import { createForm } from "@formily/core"
 import { createSchemaField } from "@formily/react"
 import { Modal, Button } from "antd"
-import { UploadOutlined } from '@ant-design/icons'
+import { UploadOutlined } from "@ant-design/icons"
 import { Form, FormItem, Input, NumberPicker, Upload } from "@formily/antd"
 import { schema } from "./config"
 
@@ -12,7 +12,7 @@ const IDUpload = (props: any) => {
       {...props}
       action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
       headers={{
-        authorization: 'authorization-text',
+        authorization: "authorization-text",
       }}
     >
       <Button icon={<UploadOutlined />}>上传附件</Button>
@@ -36,7 +36,6 @@ const CreatePPt = ({ params = {}, onOk, onCancel }: any) => {
 
   const handleOk = async () => {
     const values = await form.submit()
-    console.log(values, '123')
     onOk()
   }
   return (

@@ -8,8 +8,8 @@
   cursor: crosshair;
   .selection {
     position: absolute;
-    opacity: .8;
-  
+    opacity: 0.8;
+    border: 1px solid $themeColor;
     &:not(.line) {
       border: 1px solid $themeColor;
     }

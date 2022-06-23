@@ -20,7 +20,6 @@ export const canvasReducer = createSlice({
   } as any,
   reducers: {
     setHandleElementId: (state, action) => {
-      console.log("1111111", action.payload)
       state.handleElementId = action.payload
     },
     setActiveElementIdList: (state, action) => {

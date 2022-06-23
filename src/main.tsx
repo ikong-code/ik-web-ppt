@@ -3,8 +3,8 @@ import { HashRouter, Routes, Route } from "react-router-dom"
 import Router from "./router"
 import store from "./store"
 import { Provider } from "react-redux"
-import List from '@/views/List'
-import PPTEntry from '@/views/PPTEntry'
+import List from "@/views/List"
+import PPTEntry from "@/views/PPTEntry"
 import "./index.scss"
 import "./globle.scss"
 import "./assets/iconfont/iconfont.css"
@@ -13,12 +13,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <Provider store={store}>
     <HashRouter>
       <Router />
-      {/* <Routes> */}
-        {/* <Route /> */}
-        {/* <Route path="/" element={<PPTEntry />} /> */}
-        {/* <Route path="/list" element={<List />} /> */}
-        {/* <Route path="/aaa" element={<PPTEntry />} /> */}
-      {/* </Routes> */}
     </HashRouter>
   </Provider>
 )

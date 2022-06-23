@@ -27,13 +27,11 @@ const Screen = () => {
   }, [slides, slideIndex])
 
   const getScale = useMemo(() => {
-    console.log(slideWidth / VIEWPORT_SIZE, "scale")
     return slideWidth / VIEWPORT_SIZE
   }, [slideWidth])
 
   useEffect(() => {
     const windowResizeListener = () => {
-      console.log("begin")
       setSlideContentSize()
       if (!isFullscreen()) exitScreening()
     }
@@ -126,8 +124,6 @@ const Screen = () => {
   //     else execNext()
   //   }
   // }
-
-  console.log()
 
   return (
     <div className="ppt-screen">

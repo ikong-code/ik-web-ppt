@@ -15,7 +15,6 @@ const EditorHeader = () => {
 
   const getCurrentSlideID = () => {
     const slide = slides[slideIndex]
-    console.log(slides[slideIndex])
     if (slide) {
       return slides[slideIndex].id
     }

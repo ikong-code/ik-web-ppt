@@ -1,21 +1,25 @@
-import { useMemo, MouseEventHandler } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { PPTElement, PPTAnimation } from '@/types/slides'
-import { OperateResizeHandler, OperateLineHandler } from '@/types/edit'
-import TextElementOperate from './TextElementOperate'
-import ImageElementOperate from './ImageElementOperate'
-import './index.scss'
+import { useMemo, MouseEventHandler } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { PPTElement, PPTAnimation } from "@/types/slides"
+import { OperateResizeHandler, OperateLineHandler } from "@/types/edit"
+import TextElementOperate from "./TextElementOperate"
+import ImageElementOperate from "./ImageElementOperate"
+import ShapeElementOperate from "./ShapeElementOperate"
+import "./index.scss"
 
 interface IProps {
-  elementInfo: PPTElement;
-  isSelected: boolean;
-  isActive: boolean;
-  isActiveGroupElement: boolean;
-  isMultiSelect?: boolean;
-  rotateElement: (el: PPTElement) => void;
-  scaleElement: (e: any, el: PPTElement, command: OperateResizeHandler) => void;
-  openLinkDialog: () => void;
-  dragLineElement: (e: any, element: PPTElement, command: OperateLineHandler) => void
+  elementInfo: PPTElement
+  isSelected: boolean
+  isActive: boolean
+  isActiveGroupElement: boolean
+  isMultiSelect?: boolean
+  rotateElement: (el: PPTElement) => void
+  scaleElement: (e: any, el: PPTElement, command: OperateResizeHandler) => void
+  dragLineElement: (
+    e: any,
+    element: PPTElement,
+    command: OperateLineHandler
+  ) => void
 }
 
 const Operate = ({
@@ -26,7 +30,6 @@ const Operate = ({
   // isMultiSelect,
   rotateElement,
   scaleElement,
-  openLinkDialog,
   dragLineElement,
 }: IProps) => {
   const canvasScale = useSelector((state: any) => state.canvas.canvasScale)
@@ -57,7 +60,18 @@ const Operate = ({
           dragLineElement={dragLineElement}
         />
       )
+    } else if (elementInfo.type === "shape") {
+      return (
+        <ShapeElementOperate
+          elementInfo={elementInfo}
+          handlerVisible={!elementInfo.lock && isActive}
+          rotateElement={rotateElement}
+          scaleElement={scaleElement}
+          dragLineElement={dragLineElement}
+        />
+      )
     }
+
     return null
   }, [elementInfo, isActive])
 
@@ -67,7 +81,6 @@ const Operate = ({
       (animation: PPTAnimation) => animation.elId === elementInfo.id
     )
   }, [slides, slideIndex, elementInfo.id])
-
 
   return (
     <div

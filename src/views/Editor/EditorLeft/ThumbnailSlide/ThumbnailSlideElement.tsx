@@ -1,6 +1,10 @@
 import { useMemo } from "react"
 import { ElementTypes, PPTElement } from "@/types/slides"
-import { BaseTextElement, BaseImageElement } from "@/components/BaseElement"
+import {
+  BaseTextElement,
+  BaseImageElement,
+  BaseShapeElement,
+} from "@/components/BaseElement"
 import "./index.scss"
 
 interface IProps {
@@ -25,6 +29,14 @@ const ThumbnailSlideElement = ({ elementInfo, elementIndex }: IProps) => {
         <BaseImageElement
           elementInfo={elementInfo}
           // onSelectElement={handleSelectElement}
+        />
+      )
+    }
+    if (elementInfo.type === "shape") {
+      return (
+        <BaseShapeElement
+          elementInfo={elementInfo}
+          onSelectElement={handleSelectElement}
         />
       )
     }

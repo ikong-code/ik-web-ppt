@@ -2,7 +2,11 @@ import { useMemo } from "react"
 import classnames from "classnames"
 import { useSelector } from "react-redux"
 import { ElementTypes, PPTElement } from "@/types/slides"
-import { BaseTextElement, BaseImageElement } from "@/components/BaseElement"
+import {
+  BaseTextElement,
+  BaseImageElement,
+  BaseShapeElement,
+} from "@/components/BaseElement"
 
 interface IProps {
   elementInfo: PPTElement
@@ -45,6 +49,14 @@ IProps) => {
     if (elementInfo.type === "image") {
       return (
         <BaseImageElement
+          elementInfo={elementInfo}
+          onSelectElement={handleSelectElement}
+        />
+      )
+    }
+    if (elementInfo.type === "shape") {
+      return (
+        <BaseShapeElement
           elementInfo={elementInfo}
           onSelectElement={handleSelectElement}
         />

@@ -57,8 +57,6 @@ const Saturation = ({ value, hue, onChange }: IProps) => {
     window.addEventListener("mouseup", unbindEventListeners)
   }
 
-  console.log(pointerTop, "pointerTop()")
-
   return (
     <div
       className="saturation"

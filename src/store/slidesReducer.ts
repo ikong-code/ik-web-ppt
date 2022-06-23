@@ -65,7 +65,6 @@ export const slidesReducer = createSlice({
       state.slides[state.slideIndex].elements = newEls
     },
     updateElement: (state, action) => {
-      console.log("123")
       const { id, props } = action.payload
       const slideIndex = state.slideIndex
       const slide = state.slides[slideIndex]
@@ -73,7 +72,6 @@ export const slidesReducer = createSlice({
         return id === el.id ? { ...el, ...props } : el
       })
 
-      console.log(action.payload, elements, "action.payload")
       state.slides[slideIndex].elements = elements as PPTElement[]
     },
     removeElement: (state, action) => {

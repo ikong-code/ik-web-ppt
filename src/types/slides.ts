@@ -66,6 +66,51 @@ export interface Slide {
   turningMode?: TurningMode
 }
 
+/**
+ * 形状元素
+ *
+ * type: 元素类型（shape）
+ *
+ * viewBox: SVG的viewBox属性，默认为正方形，例如 1000 表示 '0 0 1000 1000'
+ *
+ * path: 形状路径，SVG path 的 d 属性
+ *
+ * fixedRatio: 固定形状宽高比例
+ *
+ * fill: 填充，不存在渐变时生效
+ *
+ * gradient?: 渐变，该属性存在时将优先作为填充
+ *
+ * outline?: 边框
+ *
+ * opacity?: 不透明度
+ *
+ * flipH?: 水平翻转
+ *
+ * flipV?: 垂直翻转
+ *
+ * shadow?: 阴影
+ *
+ * special?: 特殊形状（标记一些难以解析的形状，例如路径使用了 L Q C A 以外的类型，该类形状在导出后将变为图片的形式）
+ *
+ * text?: 形状内文本
+ */
+export interface PPTShapeElement extends PPTBaseElement {
+  type: "shape"
+  viewBox: number
+  path: string
+  fixedRatio: boolean
+  fill: string
+  gradient?: any
+  outline?: PPTElementOutline
+  opacity?: number
+  flipH?: boolean
+  flipV?: boolean
+  shadow?: PPTElementShadow
+  special?: boolean
+  text?: any
+}
+
 export const enum ElementTypes {
   TEXT = "text",
   IMAGE = "image",
@@ -269,7 +314,7 @@ export interface PPTImageElement extends PPTBaseElement {
   shadow?: PPTElementShadow
 }
 
-export type PPTElement = PPTTextElement | PPTImageElement
+export type PPTElement = PPTTextElement | PPTImageElement | PPTShapeElement
 
 /**
  * 元素边框

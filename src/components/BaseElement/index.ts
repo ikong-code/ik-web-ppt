@@ -1,7 +1,5 @@
-import BaseTextElement from "./BaseTextElement";
+import BaseTextElement from "./BaseTextElement"
 import BaseImageElement from "./BaseImageElement"
+import BaseShapeElement from "./BaseShapeElement"
 
-export {
-  BaseTextElement,
-  BaseImageElement
-}
+export { BaseTextElement, BaseImageElement, BaseShapeElement }

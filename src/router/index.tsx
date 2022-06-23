@@ -31,5 +31,4 @@ const generateRouter = (routers: any) => {
 }
 
 const Router = () => useRoutes(generateRouter(routes))
-console.log(generateRouter(routes))
 export default Router

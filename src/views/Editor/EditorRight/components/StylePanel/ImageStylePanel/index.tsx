@@ -32,8 +32,6 @@ const ImageStylePanel = ({ elementInfo, onSetting }: IProps) => {
     })
   }
 
-  console.log(elementInfo, "elementInfo")
-
   return (
     <div className="image-style-panel">
       <div

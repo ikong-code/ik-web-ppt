@@ -1,4 +1,8 @@
-import { BaseTextElement, BaseImageElement } from "@/components/BaseElement"
+import {
+  BaseTextElement,
+  BaseImageElement,
+  BaseShapeElement,
+} from "@/components/BaseElement"
 import { PPTElement } from "@/types/slides"
 import { ContextmenuItem } from "@/components/Contextmenu/types"
 import useDeleteElement from "@/hooks/useDeleteElement"
@@ -13,14 +17,12 @@ interface IProps {
     canMove: boolean,
     elements: PPTElement[]
   ) => void
-  openLinkDialog?: () => void
 }
 const EditableElement = ({
   elementInfo,
   elementIndex,
   isMultiSelect,
   onSelectElement,
-  openLinkDialog,
 }: IProps) => {
   const { deleteElement } = useDeleteElement()
 
@@ -163,7 +165,6 @@ const EditableElement = ({
       },
     ]
   }
-
   const currentElementComponent = () => {
     if (elementInfo.type === "text") {
       return (
@@ -176,6 +177,14 @@ const EditableElement = ({
     if (elementInfo.type === "image") {
       return (
         <BaseImageElement
+          elementInfo={elementInfo}
+          onSelectElement={onSelectElement}
+        />
+      )
+    }
+    if (elementInfo.type === "shape") {
+      return (
+        <BaseShapeElement
           elementInfo={elementInfo}
           onSelectElement={onSelectElement}
         />

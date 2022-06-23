@@ -59,8 +59,6 @@ const CanvasContainer = () => {
     viewportRef.current
   )
 
-  const openLinkDialog = () => {}
-
   useEffect(() => {
     const currentSlide = slides[slideIndex].elements
     setElementList(currentSlide ? currentSlide : [])
@@ -107,16 +105,18 @@ const CanvasContainer = () => {
         }}
       >
         <div className="operates">
-          {((alignmentLines.current || []) as any).map((line: any, index: number) => {
-            return (
-              <AlignmentLine
-                key={index}
-                type={line.type}
-                axis={line.axis}
-                length={line.length}
-              />
-            )
-          })}
+          {((alignmentLines.current || []) as any).map(
+            (line: any, index: number) => {
+              return (
+                <AlignmentLine
+                  key={index}
+                  type={line.type}
+                  axis={line.axis}
+                  length={line.length}
+                />
+              )
+            }
+          )}
 
           {(elementList || []).map((element, index: number) => {
             return (
@@ -126,10 +126,8 @@ const CanvasContainer = () => {
                 isSelected={activeElementIdList.includes(element.id)}
                 isActive={handleElementId === element.id}
                 isActiveGroupElement={activeGroupElementId === element.id}
-                // isMultiSelect={activeElementIdList.length > 1}
                 rotateElement={rotateElement}
                 scaleElement={scaleElement}
-                openLinkDialog={openLinkDialog}
                 dragLineElement={dragLineElement}
               />
             )
@@ -150,7 +148,6 @@ const CanvasContainer = () => {
                 elementIndex={idx + 1}
                 isMultiSelect={activeElementIdList.length > 1}
                 onSelectElement={selectElement}
-                openLinkDialog={openLinkDialog}
               />
             )
           })}

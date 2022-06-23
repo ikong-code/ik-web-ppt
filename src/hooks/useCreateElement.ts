@@ -2,7 +2,8 @@ import { useSelector, useDispatch } from "react-redux"
 import { createRandomCode } from "@/utils/common"
 import { getImageSize } from "@/utils/image"
 import { VIEWPORT_SIZE } from "@/config/canvas"
-import { PPTElement } from "@/types/slides"
+import { PPTElement, PPTShapeElement } from "@/types/slides"
+import { ShapePoolItem } from "@/config/shapes"
 // import useHistorySnapshot from '@/hooks/useHistorySnapshot'
 import { addElement } from "@/store/slidesReducer"
 import {
@@ -165,24 +166,27 @@ export default () => {
    * @param position 位置大小信息
    * @param data 形状路径信息
    */
-  // const createShapeElement = (position: CommonElementPosition, data: ShapePoolItem) => {
-  // const { left, top, width, height } = position
-  // const newElement: PPTShapeElement = {
-  //   type: 'shape',
-  //   id: createRandomCode(),
-  //   left,
-  //   top,
-  //   width,
-  //   height,
-  //   viewBox: data.viewBox,
-  //   path: data.path,
-  //   fill: theme.value.themeColor,
-  //   fixedRatio: false,
-  //   rotate: 0,
-  // }
-  // if (data.special) newElement.special = true
-  // createElement(newElement)
-  // }
+  const createShapeElement = (
+    position: CommonElementPosition,
+    data: ShapePoolItem
+  ) => {
+    const { left, top, width, height } = position
+    const newElement: PPTShapeElement = {
+      type: "shape",
+      id: createRandomCode(),
+      left,
+      top,
+      width,
+      height,
+      viewBox: data.viewBox,
+      path: data.path,
+      fill: theme.themeColor,
+      fixedRatio: false,
+      rotate: 0,
+    }
+    if (data.special) newElement.special = true
+    createElement(newElement)
+  }
 
   /**
    * 创建线条元素
@@ -273,7 +277,7 @@ export default () => {
     createImageElement,
     // createTableElement,
     createTextElement,
-    // createShapeElement,
+    createShapeElement,
     // createLineElement,
     // createLatexElement,
     // createVideoElement,
