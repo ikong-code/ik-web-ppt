@@ -38,6 +38,6 @@ export const isFullscreen = () => {
     document.msFullScreen
   )
 }
-document.mozFullScreen ||
-  document.webkitIsFullScreen ||
-  document.webkitFullScreen
+// document.mozFullScreen ||
+//   document.webkitIsFullScreen ||
+//   document.webkitFullScreen

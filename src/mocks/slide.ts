@@ -59,18 +59,6 @@ const slides: Slide[] = [
         defaultFontName: "Microsoft Yahei",
         defaultColor: "#333",
       },
-      {
-        type: "line",
-        id: "FnpZs4",
-        left: 361,
-        top: 238,
-        start: [0, 0],
-        end: [549, 0],
-        points: ["", ""],
-        color: "#5b9bd5",
-        style: "solid",
-        width: 2,
-      },
     ],
     background: {
       type: "solid",

@@ -3,6 +3,19 @@
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+  .color-pick-btn {
+    display: flex;
+    align-items: center;
+    padding: 4px 10px;
+    .color-block {
+      height: 20px;
+      margin-left: 8px;
+      flex: 1;
+      outline: 1px dashed hsla(0, 0%, 40%, 0.12);
+      margin-right: 6px;
+    }
+  }
+
   &.btn-group {
     button {
       flex: 1;

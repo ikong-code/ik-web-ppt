@@ -1,6 +1,7 @@
 import { useMemo } from "react"
 import ImageStylePanel from "./ImageStylePanel"
 import TextStylePanel from "./TextStylePanel"
+import ShapeStylePanel from "./ShapeStylePanel"
 import { useSelector, useDispatch } from "react-redux"
 import { PPTElement } from "@/types/slides"
 import { updateElement } from "@/store/slidesReducer"
@@ -41,6 +42,15 @@ const StylePanel = (props: any) => {
           case "image":
             component = (
               <ImageStylePanel
+                {...props}
+                elementInfo={elementList[targetElementIdx]}
+                onSetting={handleSettingConfig}
+              />
+            )
+            break
+          case "shape":
+            component = (
+              <ShapeStylePanel
                 {...props}
                 elementInfo={elementList[targetElementIdx]}
                 onSetting={handleSettingConfig}

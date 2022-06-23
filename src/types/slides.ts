@@ -49,8 +49,6 @@ export type TurningMode = "no" | "fade" | "slideX" | "slideY"
  *
  * elements: 元素集合
  *
- * remark?: 备注
- *
  * background?: 页面背景
  *
  * animations?: 元素动画集合
@@ -60,7 +58,6 @@ export type TurningMode = "no" | "fade" | "slideX" | "slideY"
 export interface Slide {
   id: string
   elements: PPTElement[]
-  remark?: string
   background?: SlideBackground
   animations?: PPTAnimation[]
   turningMode?: TurningMode

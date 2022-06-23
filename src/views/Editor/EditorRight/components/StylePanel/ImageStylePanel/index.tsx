@@ -54,9 +54,9 @@ const ImageStylePanel = ({ elementInfo, onSetting }: IProps) => {
         </Button>
         <Button
           className={classnames({
-            active: elementInfo.flipY,
+            active: elementInfo.flipV,
           })}
-          onClick={() => handleTextPosition(!elementInfo.flipY, "flipY")}
+          onClick={() => handleTextPosition(!elementInfo.flipV, "flipV")}
         >
           垂直翻转
         </Button>

@@ -69,16 +69,12 @@ const BaseImageElement = ({
           className="element-content"
           style={{
             // filter: shadowStyle ? `drop-shadow(${shadowStyle})` : '',
-            // transform: flipStyle,
-            transform: flipStyle(elementInfo.flipH, elementInfo.flipY),
+            transform: flipStyle(elementInfo.flipH, elementInfo.flipV),
           }}
           onMouseDown={handleSelectElement}
         >
           {/* <ImageOutline :elementInfo="elementInfo" /> */}
-          <div
-            className="image-content"
-            // style={{ clipPath: clipShape.style }}
-          >
+          <div className="image-content">
             <img
               src={elementInfo.src}
               draggable={false}

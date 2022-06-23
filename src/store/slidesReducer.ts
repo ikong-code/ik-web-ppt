@@ -19,6 +19,19 @@ export const slidesReducer = createSlice({
     updateSlideIndex: (state, action) => {
       state.slideIndex = action.payload
     },
+    // 切换页
+    cutSlideIndex: (state, action) => {
+      if (action.payload === "prev") {
+        const nextTarIdx = state.slideIndex - 1
+        state.slideIndex = nextTarIdx >= 0 ? nextTarIdx : 0
+      } else {
+        const nextTarIdx = state.slideIndex + 1
+        state.slideIndex =
+          nextTarIdx >= state.slides.length - 1
+            ? state.slides.length - 1
+            : nextTarIdx
+      }
+    },
     setSlides: (state, action) => {
       state.slides = action.payload
     },
@@ -39,6 +52,11 @@ export const slidesReducer = createSlice({
         ...state.slides[slideIndex],
         ...action.payload,
       }
+      console.log(
+        action.payload,
+        state.slides[slideIndex],
+        "state.slides[slideIndex]"
+      )
     },
 
     /** 删除幻灯片 传值幻灯片id */
@@ -97,6 +115,7 @@ export const {
   addElement,
   updateElement,
   removeElement,
+  cutSlideIndex,
 } = slidesReducer.actions
 
 export default slidesReducer.reducer

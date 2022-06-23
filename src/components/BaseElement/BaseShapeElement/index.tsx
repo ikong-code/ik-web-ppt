@@ -70,7 +70,7 @@ const BaseShapeElement = ({ elementInfo, onSelectElement }: IProps) => {
           style={{
             opacity: elementInfo.opacity,
             // filter: shadowStyle ? `drop-shadow(${shadowStyle})` : "",
-            transform: flipStyle(elementInfo.flipH, elementInfo.flipY),
+            transform: flipStyle(elementInfo.flipH, elementInfo.flipV),
             color: text().defaultColor,
           }}
           onMouseDown={handleSelectElement}

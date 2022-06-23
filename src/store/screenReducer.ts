@@ -9,10 +9,13 @@ export const screenReducer = createSlice({
     setScreening: (state, action) => {
       state.screening = action.payload
     },
+    exitScreening: (state) => {
+      state.screening = false
+    },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { setScreening } = screenReducer.actions
+export const { setScreening, exitScreening } = screenReducer.actions
 
 export default screenReducer.reducer

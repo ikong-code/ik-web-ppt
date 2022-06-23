@@ -1,11 +1,19 @@
 import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { setDisableHotkeys } from "@/store/canvasReducer"
-import { deleteElement, deleteSlides } from "@/store/slidesReducer"
+import {
+  deleteElement,
+  deleteSlides,
+  updateSlideIndex,
+  cutSlideIndex,
+} from "@/store/slidesReducer"
+import { exitScreening } from "@/store/screenReducer"
 import { KEYS } from "@/config/hotkey"
+import { isFullscreen } from "@/utils/screen"
 import useDeleteElement from "./useDeleteElement"
 
-const useGlobalHotKey = () => {
+// 编辑状态时某些快捷键操作不可以用
+const useGlobalHotKey = (isScreening = false) => {
   const activeElementIdList = useSelector(
     (state: any) => state.canvas.activeElementIdList
   )
@@ -22,24 +30,45 @@ const useGlobalHotKey = () => {
   const { deleteElement } = useDeleteElement()
 
   const remove = () => {
-    if (activeElementIdList.length) {
+    console.log(!!activeElementIdList.length)
+    if (!!activeElementIdList.length) {
       deleteElement(slides, slideIndex, activeElementIdList)
     } else if (thumbnailsFocus) {
-      deleteSlides()
+      console.log(slides[slideIndex].id)
+      deleteSlides(slides[slideIndex].id)
     }
   }
 
   useEffect(() => {
     const keydownListener = (e: KeyboardEvent) => {
       const { ctrlKey, metaKey } = e
-      const ctrlOrMetaKeyActive = ctrlKey || metaKey
-      const key = e.key.toUpperCase()
+      const key = e.key.toLowerCase()
+      console.log(e.key, ctrlKey)
 
-      // backspace || delete键 删除节点 或 幻灯片
-      if (key === KEYS.DELETE || key === KEYS.BACKSPACE) {
-        if (disableHotkeys) return
-        e.preventDefault()
-        remove()
+      // 下一页
+      if (e.key === "arrowdown" || key === "arrowright") {
+        dispatch(cutSlideIndex("next"))
+      }
+      // 上一页
+      if (e.key === "arrowup" || key === "arrowleft") {
+        dispatch(cutSlideIndex("prev"))
+      }
+
+      if (isScreening) {
+        // 退出放映状态
+        if (key === "escape") {
+          dispatch(exitScreening())
+        }
+      } else {
+        // 撤销
+        if (ctrlKey && key === "z") {
+        }
+        // backspace || delete键 删除节点 或 幻灯片
+        if (key === "delete" || key === "backspace") {
+          if (disableHotkeys) return
+          e.preventDefault()
+          remove()
+        }
       }
     }
     document.addEventListener("keydown", keydownListener)

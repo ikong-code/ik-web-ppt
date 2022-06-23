@@ -1,15 +1,21 @@
 import { useMemo, useState, useEffect } from "react"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { elementTabs, slideTabs } from "./config"
 import StylePanel from "./components/StylePanel"
 import SlidePanel from "./components/SlideStylePanel"
 import classnames from "classnames"
+import { updateSlides } from "@/store/slidesReducer"
 import "./index.scss"
 
 const EditorRight = () => {
+  const dispatch = useDispatch()
+
   const activeElementIdList = useSelector(
     (state: any) => state.canvas.activeElementIdList
   )
+
+  const slides = useSelector((state: any) => state.slides.slides)
+  const slideIndex = useSelector((state: any) => state.slides.slideIndex)
 
   const [curTab, setCurTab] = useState<string>("")
 
@@ -29,6 +35,11 @@ const EditorRight = () => {
     setCurTab(tab)
   }
 
+  const handleSlideSetting = (props: { [key: string]: string }) => {
+    dispatch(updateSlides(props))
+    console.log(props)
+  }
+
   // 获取对应tab下的配置组件
   const currentPanelComponent = () => {
     let component = null
@@ -40,7 +51,12 @@ const EditorRight = () => {
         component = <div>el_position</div>
         break
       case "slide_style":
-        component = <SlidePanel />
+        component = (
+          <SlidePanel
+            slideInfo={slides[slideIndex]}
+            onSlideSetting={handleSlideSetting}
+          />
+        )
         break
       case "slide_animate":
         component = <div>slide_animate</div>

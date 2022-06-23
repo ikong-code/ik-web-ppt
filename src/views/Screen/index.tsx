@@ -8,6 +8,7 @@ import ScreenSlide from "./components/ScreenSlide"
 import { VIEWPORT_SIZE } from "@/config/canvas"
 import { isFullscreen } from "@/utils/screen"
 import useScreening from "@/hooks/useScreening"
+import useGlobalHotKey from "@/hooks/useGlobalHotkey"
 import { updateSlideIndex } from "@/store/slidesReducer"
 import { setScreening } from "@/store/screenReducer"
 import "./index.scss"
@@ -17,6 +18,8 @@ const Screen = () => {
   const slideIndex = useSelector((state: any) => state.slides.slideIndex)
   const viewportRatio = useSelector((state: any) => state.canvas.viewportRatio)
   const dispatch = useDispatch()
+
+  useGlobalHotKey(true)
 
   const [slideWidth, setSlideWidth] = useState<number>(0)
   const [slideHeight, setSlideHeight] = useState<number>(0)

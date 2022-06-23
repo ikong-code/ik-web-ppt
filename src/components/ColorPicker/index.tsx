@@ -46,7 +46,7 @@ const standardColors = [
 ]
 
 interface IProps {
-  value: string
+  value: string | undefined
   onChange: (val: string) => void
 }
 

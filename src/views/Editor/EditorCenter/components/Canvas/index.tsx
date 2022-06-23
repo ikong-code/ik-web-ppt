@@ -6,6 +6,7 @@ import EditableElement from "./components/EditableElement"
 import ElementCreateSelection from "./components/ElementCreateSelection"
 import AlignmentLine from "./components/AlignmentLine"
 import Operate from "./components/Operate"
+import ViewportBackground from "./components/ViewportBackground"
 import useDragElement from "./hooks/useDragElement"
 import useSelectElement from "./hooks/useSelectElement"
 import useDragLineElement from "./hooks/useDragLineElement"
@@ -133,7 +134,7 @@ const CanvasContainer = () => {
             )
           })}
 
-          {/* <ViewportBackground /> */}
+          <ViewportBackground background={slides[slideIndex]?.background} />
         </div>
         <div
           className="viewport"
