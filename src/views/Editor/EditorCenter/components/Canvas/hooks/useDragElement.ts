@@ -9,9 +9,6 @@ import { updateSlides } from "@/store/slidesReducer"
 // import useHistorySnapshot from '@/hooks/useHistorySnapshot'
 
 export default (alignmentLines: Ref<AlignmentLineProps[] | null> | any) => {
-  const activeGroupElementId = useSelector(
-    (state: any) => state.canvas.activeGroupElementId
-  )
   const canvasScale = useSelector((state: any) => state.canvas.canvasScale)
   const viewportRatio = useSelector((state: any) => state.canvas.viewportRatio)
   const dispatch = useDispatch()
@@ -51,8 +48,6 @@ export default (alignmentLines: Ref<AlignmentLineProps[] | null> | any) => {
 
     let isMisoperation: boolean | null = null
 
-    const isActiveGroupElement = element.id === activeGroupElementId
-
     // 收集对齐对齐吸附线
     // 包括页面内除目标元素外的其他元素在画布中的各个可吸附对齐位置：上下左右四边，水平中心、垂直中心
     // 其中线条和被旋转过的元素需要重新计算他们在画布中的中心点位置的范围
@@ -61,8 +56,6 @@ export default (alignmentLines: Ref<AlignmentLineProps[] | null> | any) => {
 
     for (const el of elementList) {
       if (el.type === "line") continue
-      if (isActiveGroupElement && el.id === element.id) continue
-      if (!isActiveGroupElement && activeElementIdList.includes(el.id)) continue
 
       let left, top, width, height
       if ("rotate" in el && el.rotate) {
@@ -163,7 +156,7 @@ export default (alignmentLines: Ref<AlignmentLineProps[] | null> | any) => {
         targetMinY: number,
         targetMaxY: number
 
-      if (activeElementIdList.length === 1 || isActiveGroupElement) {
+      if (activeElementIdList.length === 1) {
         if (elOriginRotate) {
           const { xRange, yRange } = getRectRotatedRange({
             left: targetLeft,
@@ -328,8 +321,8 @@ export default (alignmentLines: Ref<AlignmentLineProps[] | null> | any) => {
       }
       alignmentLines.current = _alignmentLines
 
-      // 单选状态下，或者当前选中的多个元素中存在正在操作的元素时，仅修改正在操作的元素的位置
-      if (activeElementIdList.length === 1 || isActiveGroupElement) {
+      // 单选状态存在正在操作的元素时，仅修改正在操作的元素的位置
+      if (activeElementIdList.length === 1) {
         elementList = elementList.map((el: PPTElement) => {
           return el.id === element.id
             ? { ...el, left: targetLeft, top: targetTop }

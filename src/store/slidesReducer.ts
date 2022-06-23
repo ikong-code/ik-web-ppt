@@ -52,11 +52,6 @@ export const slidesReducer = createSlice({
         ...state.slides[slideIndex],
         ...action.payload,
       }
-      console.log(
-        action.payload,
-        state.slides[slideIndex],
-        "state.slides[slideIndex]"
-      )
     },
 
     /** 删除幻灯片 传值幻灯片id */

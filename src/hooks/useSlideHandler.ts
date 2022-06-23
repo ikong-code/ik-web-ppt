@@ -5,17 +5,12 @@ import {
   updateSlideIndex,
   setSlides,
   addSlides,
-  updateSlides,
   deleteSlides,
 } from "@/store/slidesReducer"
 import { setActiveElementIdList } from "@/store/canvasReducer"
 const useSlideHandler = () => {
-  const slidesList = useSelector((state: any) => state.slides.slides)
-  const slideIndex = useSelector((state: any) => state.slides.slideIndex)
   const theme = useSelector((state: any) => state.slides.theme)
   const dispatch = useDispatch()
-
-  // const { pasteTextClipboardData, addSlidesFromClipboard } = usePasteTextClipboardData()
 
   // 创建一页空白页并添加到下一页
   const createSlide = () => {
@@ -29,7 +24,6 @@ const useSlideHandler = () => {
     }
     dispatch(addSlides(emptySlide))
     dispatch(setActiveElementIdList([])) // 重置当前选择的element
-    // addHistorySnapshot()
   }
 
   // 重置幻灯片
@@ -50,18 +44,11 @@ const useSlideHandler = () => {
   // 删除当前页，若将删除全部页面，则执行重置幻灯片操作
   const deleteSlide = (targetSlidesId: number | string) => {
     dispatch(deleteSlides(targetSlidesId))
-    // addHistorySnapshot()
   }
 
   const updateSlidesList = (slidesList: Slide[]) => {
     dispatch(setSlides(slidesList))
   }
-
-  // 将当前页复制一份到下一页
-  // const copyAndPasteSlide = () => {
-  //   const slide = JSON.parse(JSON.stringify(currentSlide.value))
-  //   addSlidesFromClipboard([slide])
-  // }
 
   return {
     createSlide,

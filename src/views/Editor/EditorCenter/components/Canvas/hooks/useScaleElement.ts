@@ -1,23 +1,13 @@
 import { MouseEventHandler, useMemo } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { uniq, debounce } from "lodash"
-import {
-  PPTElement,
-  PPTImageElement,
-  PPTLineElement,
-  PPTShapeElement,
-} from "@/types/slides"
-import {
-  OperateResizeHandlers,
-  AlignmentLineProps,
-  MultiSelectRange,
-} from "@/types/edit"
+import { PPTElement, PPTLineElement } from "@/types/slides"
+import { OperateResizeHandlers, AlignmentLineProps } from "@/types/edit"
 import { VIEWPORT_SIZE } from "@/config/canvas"
 import { MIN_SIZE } from "@/config/element"
 import { AlignLine, uniqAlignLines } from "@/utils/element"
 import { setScalingState } from "@/store/canvasReducer"
 import { updateSlides, updateElement } from "@/store/slidesReducer"
-// import useHistorySnapshot from '@/hooks/useHistorySnapshot'
 
 interface RotateElementData {
   left: number
@@ -120,12 +110,6 @@ export default (
   alignmentLines: AlignmentLineProps[] | any
 ) => {
   const viewportRatio = useSelector((state: any) => state.canvas.viewportRatio)
-  const activeElementIdList = useSelector(
-    (state: any) => state.canvas.activeElementIdList
-  )
-  const activeGroupElementId = useSelector(
-    (state: any) => state.canvas.activeGroupElementId
-  )
   const canvasScale = useSelector((state: any) => state.canvas.canvasScale)
   const ctrlKeyState = useSelector((state: any) => state.keyboard.ctrlKeyState)
   const shiftKeyState = useSelector(
@@ -139,7 +123,6 @@ export default (
   }, [ctrlKeyState, shiftKeyState])
 
   let newElementList = [...elementList]
-  // const { addHistorySnapshot } = useHistorySnapshot()
 
   // 缩放元素
   const scaleElement = (
@@ -192,14 +175,10 @@ export default (
     else {
       const edgeWidth = VIEWPORT_SIZE
       const edgeHeight = VIEWPORT_SIZE * viewportRatio
-      const isActiveGroupElement = element.id === activeGroupElementId
 
       for (const el of elementList) {
         if ("rotate" in el && el.rotate) continue
-        if (el.type === "line") continue
-        if (isActiveGroupElement && el.id === element.id) continue
-        if (!isActiveGroupElement && activeElementIdList.includes(el.id))
-          continue
+        // if (el.type === "line") continue
 
         const left = el.left
         const top = el.top

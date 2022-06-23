@@ -1,15 +1,7 @@
 import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { setDisableHotkeys } from "@/store/canvasReducer"
-import {
-  deleteElement,
-  deleteSlides,
-  updateSlideIndex,
-  cutSlideIndex,
-} from "@/store/slidesReducer"
+import { deleteSlides, cutSlideIndex } from "@/store/slidesReducer"
 import { exitScreening } from "@/store/screenReducer"
-import { KEYS } from "@/config/hotkey"
-import { isFullscreen } from "@/utils/screen"
 import useDeleteElement from "./useDeleteElement"
 
 // 编辑状态时某些快捷键操作不可以用

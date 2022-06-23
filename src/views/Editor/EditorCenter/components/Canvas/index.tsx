@@ -39,9 +39,6 @@ const CanvasContainer = () => {
   const handleElementId = useSelector(
     (state: any) => state.canvas.handleElementId
   )
-  const activeGroupElementId = useSelector(
-    (state: any) => state.canvas.activeGroupElementId
-  )
   const editorAreaFocus = useSelector(
     (state: any) => state.canvas.editorAreaFocus
   )
@@ -126,7 +123,6 @@ const CanvasContainer = () => {
                 elementInfo={element}
                 isSelected={activeElementIdList.includes(element.id)}
                 isActive={handleElementId === element.id}
-                isActiveGroupElement={activeGroupElementId === element.id}
                 rotateElement={rotateElement}
                 scaleElement={scaleElement}
                 dragLineElement={dragLineElement}

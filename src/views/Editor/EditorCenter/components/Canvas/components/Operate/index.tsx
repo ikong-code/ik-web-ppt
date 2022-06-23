@@ -24,10 +24,7 @@ interface IProps {
 
 const Operate = ({
   elementInfo,
-  isSelected,
   isActive,
-  isActiveGroupElement,
-  // isMultiSelect,
   rotateElement,
   scaleElement,
   dragLineElement,

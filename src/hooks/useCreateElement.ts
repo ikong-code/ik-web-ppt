@@ -4,7 +4,6 @@ import { getImageSize } from "@/utils/image"
 import { VIEWPORT_SIZE } from "@/config/canvas"
 import { PPTElement, PPTShapeElement } from "@/types/slides"
 import { ShapePoolItem } from "@/config/shapes"
-// import useHistorySnapshot from '@/hooks/useHistorySnapshot'
 import { addElement } from "@/store/slidesReducer"
 import {
   setActiveElementIdList,
@@ -19,21 +18,11 @@ interface CommonElementPosition {
   height: number
 }
 
-interface LineElementPosition {
-  top: number
-  left: number
-  start: [number, number]
-  end: [number, number]
-}
-
 export default () => {
   const creatingElement = useSelector(
     (state: any) => state.canvas.creatingElement
   )
   const theme = useSelector((state: any) => state.slides.theme)
-  // const viewportRatio = useSelector((state: any) => state.slides.viewportRatio)
-
-  // const { addHistorySnapshot } = useHistorySnapshot()
 
   const dispatch = useDispatch()
 
@@ -49,8 +38,6 @@ export default () => {
     setTimeout(() => {
       dispatch(setEditorareaFocus(true))
     }, 0)
-
-    // addHistorySnapshot()
   }
 
   /**
@@ -83,58 +70,6 @@ export default () => {
       }
     )
   }
-
-  /**
-   * 创建表格元素
-   * @param row 行数
-   * @param col 列数
-   */
-  // const createTableElement = (row: number, col: number) => {
-  // const style: TableCellStyle = {
-  //   fontname: theme.value.fontName,
-  //   color: theme.value.fontColor,
-  // }
-  // const data: TableCell[][] = []
-  // for (let i = 0; i < row; i++) {
-  //   const rowCells: TableCell[] = []
-  //   for (let j = 0; j < col; j++) {
-  //     rowCells.push({ id: createRandomCode(), colspan: 1, rowspan: 1, text: '', style })
-  //   }
-  //   data.push(rowCells)
-  // }
-
-  // const DEFAULT_CELL_WIDTH = 100
-  // const DEFAULT_CELL_HEIGHT = 36
-
-  // const colWidths: number[] = new Array(col).fill(1 / col)
-
-  // const width = col * DEFAULT_CELL_WIDTH
-  // const height = row * DEFAULT_CELL_HEIGHT
-
-  // createElement({
-  //   type: 'table',
-  //   id: createRandomCode(),
-  //   width,
-  //   height,
-  //   colWidths,
-  //   rotate: 0,
-  //   data,
-  //   left: (VIEWPORT_SIZE - width) / 2,
-  //   top: (VIEWPORT_SIZE * viewportRatio.value - height) / 2,
-  //   outline: {
-  //     width: 2,
-  //     style: 'solid',
-  //     color: '#eeece1',
-  //   },
-  //   theme: {
-  //     color: theme.value.themeColor,
-  //     rowHeader: true,
-  //     rowFooter: false,
-  //     colHeader: false,
-  //     colFooter: false,
-  //   },
-  // })
-  // }
 
   /**
    * 创建文本元素
@@ -188,99 +123,9 @@ export default () => {
     createElement(newElement)
   }
 
-  /**
-   * 创建线条元素
-   * @param position 位置大小信息
-   * @param data 线条的路径和样式
-   */
-  // const createLineElement = (position: LineElementPosition, data: LinePoolItem) => {
-  // const { left, top, start, end } = position
-
-  // const newElement: PPTLineElement = {
-  //   type: 'line',
-  //   id: createRandomCode(),
-  //   left,
-  //   top,
-  //   start,
-  //   end,
-  //   points: data.points,
-  //   color: theme.value.themeColor,
-  //   style: data.style,
-  //   width: 2,
-  // }
-  // if (data.isBroken) newElement.broken = [(start[0] + end[0]) / 2, (start[1] + end[1]) / 2]
-  // if (data.isCurve) newElement.curve = [(start[0] + end[0]) / 2, (start[1] + end[1]) / 2]
-  // createElement(newElement)
-  // }
-
-  /**
-   * 创建LaTeX元素
-   * @param svg SVG代码
-   */
-  // const createLatexElement = (data: { path: string; latex: string; w: number; h: number; }) => {
-  // createElement({
-  //   type: 'latex',
-  //   id: createRandomCode(),
-  //   width: data.w,
-  //   height: data.h,
-  //   rotate: 0,
-  //   left: (VIEWPORT_SIZE - data.w) / 2,
-  //   top: (VIEWPORT_SIZE * viewportRatio.value - data.h) / 2,
-  //   path: data.path,
-  //   latex: data.latex,
-  //   color: theme.value.fontColor,
-  //   strokeWidth: 2,
-  //   viewBox: [data.w, data.h],
-  //   fixedRatio: true,
-  // })
-  // }
-
-  /**
-   * 创建视频元素
-   * @param src 视频地址
-   */
-  // const createVideoElement = (src: string) => {
-  // createElement({
-  //   type: 'video',
-  //   id: createRandomCode(),
-  //   width: 500,
-  //   height: 300,
-  //   rotate: 0,
-  //   left: (VIEWPORT_SIZE - 500) / 2,
-  //   top: (VIEWPORT_SIZE * viewportRatio.value - 300) / 2,
-  //   src,
-  // })
-  // }
-
-  /**
-   * 创建音频元素
-   * @param src 音频地址
-   */
-  // const createAudioElement = (src: string) => {
-  // createElement({
-  //   type: 'audio',
-  //   id: createRandomCode(),
-  //   width: 50,
-  //   height: 50,
-  //   rotate: 0,
-  //   left: (VIEWPORT_SIZE - 50) / 2,
-  //   top: (VIEWPORT_SIZE * viewportRatio.value - 50) / 2,
-  //   loop: false,
-  //   autoplay: false,
-  //   fixedRatio: true,
-  //   color: theme.value.themeColor,
-  //   src,
-  // })
-  // }
-
   return {
     createImageElement,
-    // createTableElement,
     createTextElement,
     createShapeElement,
-    // createLineElement,
-    // createLatexElement,
-    // createVideoElement,
-    // createAudioElement,
   }
 }

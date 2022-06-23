@@ -8,7 +8,6 @@ export const canvasReducer = createSlice({
     canvasScale: 1, // 画布缩放比例（基于宽度1000px）
     handleElementId: "", // 正在操作的元素ID
     activeElementIdList: [], // 被选中的元素ID集合，包含 handleElementId
-    activeGroupElementId: "", // 组合元素成员中，被选中可独立操作的元素ID
     editorAreaFocus: false, //  编辑区域聚焦
     thumbnailsFocus: false, // 左侧导航缩略图区域聚焦
     disableHotkeys: false, // 禁用快捷键
@@ -29,9 +28,6 @@ export const canvasReducer = createSlice({
         state.handleElementId = ""
       }
       state.activeElementIdList = [...action.payload]
-    },
-    setActiveGroupElementId: (state, action) => {
-      state.activeGroupElementId = action.payload
     },
     setGridLinesState: (state, action) => {
       state.showGridLines = action.payload
@@ -69,7 +65,6 @@ export const canvasReducer = createSlice({
 export const {
   setHandleElementId,
   setActiveElementIdList,
-  setActiveGroupElementId,
   setGridLinesState,
   setCanvasPercentage,
   setCreatingElement,
