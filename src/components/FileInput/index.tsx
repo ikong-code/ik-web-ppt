@@ -2,7 +2,7 @@ import { ReactNode, useRef, ChangeEventHandler } from "react"
 import { message } from "antd"
 
 interface IProps {
-  accept: string
+  accept?: string
   children: ReactNode | string | null
   onChange: (e: any) => void
 }

@@ -1,0 +1,38 @@
+.content-right {
+  border-left: 1px solid $borderColor;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  .tab-list {
+    height: 40px;
+    font-size: 12px;
+    flex-shrink: 0;
+    display: flex;
+    user-select: none;
+    .tab {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $lightGray;
+      border-bottom: 1px solid $borderColor;
+      cursor: pointer;
+
+      &.active {
+        background-color: #fff;
+        border-bottom-color: #fff;
+      }
+
+      & + .tab {
+        border-left: 1px solid $borderColor;
+      }
+    }
+  }
+  .content {
+    padding: 12px;
+    font-size: 13px;
+    flex: 1;
+    height: calc(100% - 40px);
+    overflow-y: auto;
+  }
+}

@@ -38,7 +38,7 @@ const HeaderTools = () => {
           </div>
         </Tooltip>
       </div>
-      <div className="tools-center flex">
+      <div className="tools-center flex" style={{ marginLeft: 50 }}>
         <Tooltip placement="top" title={"文字"}>
           <div
             className="tools-item flex-center pointer"
@@ -54,7 +54,7 @@ const HeaderTools = () => {
             </FileInput>
           </div>
         </Tooltip>
-        <Tooltip placement="top" title={"插入形状"}>
+        {/* <Tooltip placement="top" title={"插入形状"}>
           <div className="tools-item flex-center pointer">
             <i className="iconfont icon-xingzhuang" />
           </div>
@@ -73,13 +73,13 @@ const HeaderTools = () => {
           <div className="tools-item flex-center pointer">
             <i className="iconfont icon-shouye" />
           </div>
-        </Tooltip>
+        </Tooltip> */}
       </div>
-      <div className="tools-right flex">
+      {/* <div className="tools-right flex">
         <div className="tools-item flex-center pointer">-</div>
         <div className="tools-item flex-center pointer">100%</div>
         <div className="tools-item flex-center pointer">+</div>
-      </div>
+      </div> */}
     </div>
   )
 }

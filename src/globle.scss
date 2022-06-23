@@ -1,21 +1,28 @@
-.flex{
+.flex {
   display: flex;
 }
-.flex-column{
+.flex-column {
   display: flex;
   flex-direction: column;
 }
-.flex-center{
+.flex-center {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.flex-1{
-  flex: 1
+.flex-1 {
+  flex: 1;
 }
-.pointer{
+.pointer {
   cursor: pointer;
 }
-p{
+p {
   margin-bottom: 0;
+}
+
+.ant-btn {
+  &:hover {
+    border-color: $themeColor;
+    color: $themeColor;
+  }
 }

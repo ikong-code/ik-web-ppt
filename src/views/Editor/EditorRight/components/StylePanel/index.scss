@@ -1,0 +1,15 @@
+.row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  &.btn-group {
+    button {
+      flex: 1;
+      &.active {
+        color: #fff;
+        background-color: $themeColor;
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+.row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.image-style-panel {
+  .origin-image {
+    height: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: $lightGray;
+    margin-bottom: 10px;
+  }
+}

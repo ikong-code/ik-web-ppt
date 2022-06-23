@@ -10,7 +10,7 @@ import { setDisableHotkeys } from "@/store/canvasReducer"
 import "./index.scss"
 
 interface IProps {
-  elementInfo: PPTTextElement
+  elementInfo: PPTTextElement | any
   editable?: boolean
   contextmenus?: () => ContextmenuItem[]
   onSelectElement: (
@@ -85,6 +85,10 @@ const BaseTextElement = ({
             letterSpacing: (elementInfo.wordSpace || 0) + "px",
             color: elementInfo.defaultColor,
             fontFamily: elementInfo.defaultFontName,
+            fontSize: elementInfo.fontSize,
+            fontWeight: elementInfo.fontWeight,
+            fontStyle: elementInfo.fontStyle,
+            textDecoration: elementInfo.textDecoration,
           }}
           // contextmenu={contextmenus}
           onMouseDown={(e: any) => handleSelectElement(e)}
@@ -97,6 +101,9 @@ const BaseTextElement = ({
           {/* TODO 问题：onInput事件会导致光标前置，与 dispatch更新有关，导致页面重刷  */}
           <div
             // onInput={handleEditElement}
+            style={{
+              textAlign: elementInfo.textAlign || "left",
+            }}
             onFocus={handleDisabledHotkey}
             onBlur={(e: any) => handleEditElement(e, false)}
             suppressContentEditableWarning

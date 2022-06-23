@@ -1,6 +1,9 @@
 import { useDispatch } from "react-redux"
 import { setScreening } from "@/store/screenReducer"
 import { enterFullscreen } from "@/utils/screen"
+import { isFullscreen, exitFullscreen } from "@/utils/screen"
+import { updateSlideIndex } from "@/store/slidesReducer"
+
 const useScreening = () => {
   const dispatch = useDispatch()
 
@@ -11,10 +14,16 @@ const useScreening = () => {
   }
 
   // 从第一页开始放映
-  const enterScreeningFromStart = () => {}
+  const enterScreeningFromStart = () => {
+    dispatch(updateSlideIndex(0))
+    enterScreening()
+  }
 
-  // 推出放映状态
-  const exitScreening = () => {}
+  // 退出放映状态
+  const exitScreening = () => {
+    dispatch(setScreening(false))
+    if (isFullscreen()) exitFullscreen()
+  }
 
   return {
     enterScreening,

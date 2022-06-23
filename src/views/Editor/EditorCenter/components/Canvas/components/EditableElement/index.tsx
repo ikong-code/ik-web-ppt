@@ -1,24 +1,37 @@
-import { BaseTextElement, BaseImageElement } from '@/components/BaseElement'
-import { PPTElement } from '@/types/slides'
-import { ContextmenuItem } from '@/components/Contextmenu/types'
-import useDeleteElement from '@/hooks/useDeleteElement'
+import { BaseTextElement, BaseImageElement } from "@/components/BaseElement"
+import { PPTElement } from "@/types/slides"
+import { ContextmenuItem } from "@/components/Contextmenu/types"
+import useDeleteElement from "@/hooks/useDeleteElement"
 
 interface IProps {
-  elementInfo: PPTElement,
-  elementIndex: number;
-  isMultiSelect: boolean;
-  onSelectElement: (e: MouseEvent, element: PPTElement, canMove: boolean, elements: PPTElement[]) => void,
-  openLinkDialog?: () => void,
+  elementInfo: PPTElement
+  elementIndex: number
+  isMultiSelect: boolean
+  onSelectElement: (
+    e: MouseEvent,
+    element: PPTElement,
+    canMove: boolean,
+    elements: PPTElement[]
+  ) => void
+  openLinkDialog?: () => void
 }
-const EditableElement = ({ elementInfo, elementIndex, isMultiSelect, onSelectElement, openLinkDialog }: IProps) => {
+const EditableElement = ({
+  elementInfo,
+  elementIndex,
+  isMultiSelect,
+  onSelectElement,
+  openLinkDialog,
+}: IProps) => {
   const { deleteElement } = useDeleteElement()
 
   const contextmenus = (): ContextmenuItem[] => {
     if (elementInfo.lock) {
-      return [{
-        text: '解锁', 
-        // handler: () => unlockElement(elementInfo),
-      }]
+      return [
+        {
+          text: "解锁",
+          // handler: () => unlockElement(elementInfo),
+        },
+      ]
     }
 
     return [
@@ -49,7 +62,7 @@ const EditableElement = ({ elementInfo, elementIndex, isMultiSelect, onSelectEle
           {
             text: "水平居中",
             // handler: () =>
-              // alignElementToCanvas(ElementAlignCommands.HORIZONTAL),
+            // alignElementToCanvas(ElementAlignCommands.HORIZONTAL),
           },
           {
             text: "左对齐",
@@ -146,23 +159,27 @@ const EditableElement = ({ elementInfo, elementIndex, isMultiSelect, onSelectEle
       {
         text: "删除",
         subText: "Delete",
-        handler: deleteElement,
+        // handler: deleteElement,
       },
     ]
   }
 
   const currentElementComponent = () => {
-    if (elementInfo.type === 'text') {
-      return <BaseTextElement 
-        elementInfo={elementInfo}
-        onSelectElement={onSelectElement}
-      />
+    if (elementInfo.type === "text") {
+      return (
+        <BaseTextElement
+          elementInfo={elementInfo}
+          onSelectElement={onSelectElement}
+        />
+      )
     }
-    if( elementInfo.type === 'image') {
-      return <BaseImageElement
-        elementInfo={elementInfo}
-        onSelectElement={onSelectElement}
-      />
+    if (elementInfo.type === "image") {
+      return (
+        <BaseImageElement
+          elementInfo={elementInfo}
+          onSelectElement={onSelectElement}
+        />
+      )
     }
     return null
   }

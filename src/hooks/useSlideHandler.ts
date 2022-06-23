@@ -1,10 +1,15 @@
-import { useSelector, useDispatch } from 'react-redux'
-import { createRandomCode } from '@/utils/common'
-import { Slide } from '@/types/slides'
-import { updateSlideIndex, setSlides, addSlides, updateSlides, deleteSlides } from '@/store/slidesReducer'
-
+import { useSelector, useDispatch } from "react-redux"
+import { createRandomCode } from "@/utils/common"
+import { Slide } from "@/types/slides"
+import {
+  updateSlideIndex,
+  setSlides,
+  addSlides,
+  updateSlides,
+  deleteSlides,
+} from "@/store/slidesReducer"
+import { setActiveElementIdList } from "@/store/canvasReducer"
 const useSlideHandler = () => {
-
   const slidesList = useSelector((state: any) => state.slides.slides)
   const slideIndex = useSelector((state: any) => state.slides.slideIndex)
   const theme = useSelector((state: any) => state.slides.theme)
@@ -12,35 +17,33 @@ const useSlideHandler = () => {
 
   // const { pasteTextClipboardData, addSlidesFromClipboard } = usePasteTextClipboardData()
 
-
   // 创建一页空白页并添加到下一页
   const createSlide = () => {
     const emptySlide: Slide = {
       id: createRandomCode(8),
       elements: [],
       background: {
-        type: 'solid',
+        type: "solid",
         color: theme.backgroundColor,
       },
     }
     dispatch(addSlides(emptySlide))
-    // mainStore.setActiveElementIdList([])
-    // slidesStore.addSlide(emptySlide)
+    dispatch(setActiveElementIdList([])) // 重置当前选择的element
     // addHistorySnapshot()
   }
 
-   // 重置幻灯片
-   const resetSlides = () => {
+  // 重置幻灯片
+  const resetSlides = () => {
     const emptySlide: Slide = {
       id: createRandomCode(8),
       elements: [],
       background: {
-        type: 'solid',
+        type: "solid",
         color: theme.backgroundColor,
       },
     }
     dispatch(updateSlideIndex(0))
-    // mainStore.setActiveElementIdList([])
+    dispatch(setActiveElementIdList([])) // 重置当前选择的element
     dispatch(setSlides([emptySlide]))
   }
 
@@ -64,7 +67,7 @@ const useSlideHandler = () => {
     createSlide,
     resetSlides,
     deleteSlide,
-    updateSlidesList
+    updateSlidesList,
   }
 }
 

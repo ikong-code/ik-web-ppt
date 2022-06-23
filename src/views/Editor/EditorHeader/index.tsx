@@ -1,9 +1,26 @@
 import { useState } from "react"
 import { Dropdown, Menu, Drawer, Tooltip } from "antd"
+import { useSelector } from "react-redux"
 import useScreening from "@/hooks/useScreening"
+import useSlideHandler from "@/hooks/useSlideHandler"
+
 const EditorHeader = () => {
   const [shortcutKeyVisible, setShortcutKeyVisible] = useState(false)
   const { enterScreeningFromStart, enterScreening } = useScreening()
+
+  const slides = useSelector((state: any) => state.slides.slides)
+  const slideIndex = useSelector((state: any) => state.slides.slideIndex)
+
+  const { createSlide, resetSlides, deleteSlide } = useSlideHandler()
+
+  const getCurrentSlideID = () => {
+    const slide = slides[slideIndex]
+    console.log(slides[slideIndex])
+    if (slide) {
+      return slides[slideIndex].id
+    }
+    return null
+  }
 
   const handleScreenPlay = (begin = true) => {
     begin ? enterScreeningFromStart() : enterScreening()
@@ -27,29 +44,31 @@ const EditorHeader = () => {
   const editMenu = (
     <Menu
       items={[
-        {
-          key: "1",
-          label: <a>撤销</a>,
-        },
-        {
-          key: "2",
-          label: <a>重做</a>,
-        },
+        // {
+        //   key: "1",
+        //   label: <a>撤销</a>,
+        // },
+        // {
+        //   key: "2",
+        //   label: <a>重做</a>,
+        // },
         {
           key: "3",
-          label: <a>添加页面</a>,
+          label: <a onClick={() => createSlide()}>添加页面</a>,
         },
         {
           key: "4",
-          label: <a>删除页面</a>,
+          label: (
+            <a onClick={() => deleteSlide(getCurrentSlideID())}>删除页面</a>
+          ),
         },
-        {
-          key: "5",
-          label: <a>关闭网格线</a>,
-        },
+        // {
+        //   key: "5",
+        //   label: <a>关闭网格线</a>,
+        // },
         {
           key: "6",
-          label: <a>重置幻灯片</a>,
+          label: <a onClick={() => resetSlides()}>重置幻灯片</a>,
         },
       ]}
     />
@@ -70,15 +89,19 @@ const EditorHeader = () => {
     />
   )
 
+  const handleSave = () => {
+    console.log("保存")
+  }
+
   return (
     <div className="ikppt-editor__header">
       <div className="left">
-        <Dropdown overlay={fileMenu}>
-          <div className="left-item">
-            <i className="iconfont icon-icon" />
-            文件
-          </div>
-        </Dropdown>
+        {/* <Dropdown overlay={fileMenu}> */}
+        <div className="left-item" onClick={handleSave}>
+          <i className="iconfont icon-icon" />
+          保存
+        </div>
+        {/* </Dropdown> */}
         <Dropdown overlay={editMenu}>
           <div className="left-item">
             <i className="iconfont icon-icon2" />

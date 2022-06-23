@@ -11,7 +11,7 @@ interface IProps {
   elementInfo: PPTTextElement | any
   contextmenus?: () => ContextmenuItem[]
   onSelectElement?: (
-    e: MouseEvent,
+    e: any,
     elementInfo: PPTElement,
     canMove: boolean,
     elements: PPTElement[]
@@ -30,12 +30,25 @@ const BaseImageElement = ({
   // const { shadowStyle } = useElementShadow(shadow)
 
   // 选择当前节点
-  const handleSelectElement = (e: MouseEvent, canMove = true) => {
+  const handleSelectElement = (e: any, canMove = true) => {
     if (elementInfo.lock) return
     e.stopPropagation()
     onSelectElement(e, elementInfo, canMove, slides[slideIndex].elements)
   }
 
+  const flipStyle = (flipH: boolean, flipV: boolean) => {
+    let style = ""
+
+    if (flipH && flipV) {
+      style = "rotateX(180deg) rotateY(180deg)"
+    } else if (flipV) {
+      style = "rotateX(180deg)"
+    } else if (flipH) {
+      style = "rotateY(180deg)"
+    }
+
+    return style
+  }
   return (
     <div
       className={classNames("editable-element-image", {
@@ -54,12 +67,11 @@ const BaseImageElement = ({
       >
         <div
           className="element-content"
-          style={
-            {
-              // filter: shadowStyle ? `drop-shadow(${shadowStyle})` : '',
-              // transform: flipStyle,
-            }
-          }
+          style={{
+            // filter: shadowStyle ? `drop-shadow(${shadowStyle})` : '',
+            // transform: flipStyle,
+            transform: flipStyle(elementInfo.flipH, elementInfo.flipY),
+          }}
           onMouseDown={handleSelectElement}
         >
           {/* <ImageOutline :elementInfo="elementInfo" /> */}

@@ -1,11 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit"
-
+import { ScreenState } from "./types"
 export const screenReducer = createSlice({
   name: "screen",
   initialState: {
-    abc: 90, // 画布可视区域百分比
     screening: false, // 放映状态
-  },
+  } as ScreenState,
   reducers: {
     setScreening: (state, action) => {
       state.screening = action.payload
