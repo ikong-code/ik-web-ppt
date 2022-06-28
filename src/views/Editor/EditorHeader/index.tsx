@@ -90,6 +90,7 @@ const EditorHeader = () => {
 
   const handleSave = () => {
     console.log("保存")
+    console.log(slides, "slides")
   }
 
   return (
@@ -119,7 +120,7 @@ const EditorHeader = () => {
       </div>
       <div className="right">
         <Tooltip placement="bottom" title={"幻灯片放映"}>
-          <div className="right-item pointer">
+          <div onClick={enterScreeningFromStart} className="right-item pointer">
             <i className="iconfont icon-touyingyanshi" />
           </div>
         </Tooltip>

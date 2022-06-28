@@ -4,7 +4,7 @@ import { getImageSize } from "@/utils/image"
 import { VIEWPORT_SIZE } from "@/config/canvas"
 import { PPTElement, PPTShapeElement } from "@/types/slides"
 import { ShapePoolItem } from "@/config/shapes"
-import { addElement } from "@/store/slidesReducer"
+import { addElement, addSnapshot } from "@/store/slidesReducer"
 import {
   setActiveElementIdList,
   setCreatingElement,
@@ -38,6 +38,7 @@ export default () => {
     setTimeout(() => {
       dispatch(setEditorareaFocus(true))
     }, 0)
+    dispatch(addSnapshot())
   }
 
   /**

@@ -5,7 +5,6 @@ const ViewportBackground = ({
 }: {
   background: SlideBackground
 }) => {
-  console.log(background, "background")
   const backgroundStyle = () => {
     if (!background) return { backgroundColor: "#fff" }
 
@@ -52,7 +51,6 @@ const ViewportBackground = ({
 
     return { backgroundColor: "#fff" }
   }
-  console.log(backgroundStyle(), "render")
   return <div className="viewport-background" style={backgroundStyle()} />
 }
 

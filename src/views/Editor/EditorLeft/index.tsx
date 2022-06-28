@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { Popover } from "antd"
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd"
 import { useSelector, useDispatch } from "react-redux"
@@ -9,16 +8,14 @@ import useSlideHandler from "@/hooks/useSlideHandler"
 import TemplateList from "./TemplateList"
 import ThumbnailSlide from "./ThumbnailSlide"
 import { updateSlideIndex } from "@/store/slidesReducer"
+import useScreening from "@/hooks/useScreening"
 
 const EditorLeft = () => {
   const slidesList = useSelector((state: any) => state.slides.slides)
   const slideIndex = useSelector((state: any) => state.slides.slideIndex)
   const dispatch = useDispatch()
 
-  const { createSlide, updateSlidesList, resetSlides, deleteSlide } =
-    useSlideHandler()
-
-  // const [list, setList] = useState(mockList)
+  const { createSlide, updateSlidesList } = useSlideHandler()
 
   const handleSelect = () => {}
 
@@ -61,7 +58,13 @@ const EditorLeft = () => {
           <div className="select-btn">+</div>
         </Popover>
       </div>
-      <div className="content-left__bottom">
+      <div
+        onClick={(e) => {
+          e.preventDefault()
+          e.stopPropagation()
+        }}
+        className="content-left__bottom"
+      >
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="droppable">
             {(provided) => {

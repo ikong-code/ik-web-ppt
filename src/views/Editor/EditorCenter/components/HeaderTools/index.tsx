@@ -7,12 +7,14 @@ import FileInput from "@/components/FileInput"
 import useCreateElement from "@/hooks/useCreateElement"
 import ShapeList from "./Shapes"
 import { ShapePoolItem } from "@/config/shapes"
+import { redo, undo, asyncUndo } from '@/store/slidesReducer'
 
 import "./index.scss"
 
 const HeaderTools = () => {
   const [shapePopoverVisible, setShapePopoverVisible] = useState(false)
   const viewportRatio = useSelector((state: any) => state.canvas.viewportRatio)
+  const snapshotCursor = useSelector((state: any) => state.slides.snapshotCursor)
   const dispatch = useDispatch()
 
   const { createImageElement } = useCreateElement()
@@ -41,16 +43,30 @@ const HeaderTools = () => {
     setShapePopoverVisible(false)
   }
 
+  const handleUndo = () => {
+    console.log(snapshotCursor)
+    if(snapshotCursor > 0) {
+      dispatch(asyncUndo({type: "undo", data: snapshotCursor}))
+    } else {
+      message.destroy()
+      message.warn('已经是最原始状态了')
+    }
+  }
+
+  const handleRedo = () => {
+    dispatch(redo())
+  }
+
   return (
     <div className="content-center__tools flex">
       <div className="tools-left flex">
         <Tooltip placement="top" title={"撤销"}>
-          <div className="tools-item flex-center pointer">
+          <div onClick={handleUndo} className="tools-item flex-center pointer">
             <i className="iconfont icon-houtui-kong" />
           </div>
         </Tooltip>
-        <Tooltip placement="top" title={"重做"}>
-          <div className="tools-item flex-center pointer">
+        <Tooltip placement="top" title={"重做当前页"}>
+          <div onClick={handleRedo} className="tools-item flex-center pointer">
             <i className="iconfont icon-qianjin-kong" />
           </div>
         </Tooltip>

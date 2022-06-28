@@ -19,6 +19,9 @@ import {
   setActiveElementIdList,
   setEditorareaFocus,
 } from "@/store/canvasReducer"
+
+import { updateSlideIndex } from "@/store/slidesReducer"
+
 import "./index.scss"
 
 const CanvasContainer = () => {
@@ -58,8 +61,15 @@ const CanvasContainer = () => {
   )
 
   useEffect(() => {
-    const currentSlide = slides[slideIndex].elements
-    setElementList(currentSlide ? currentSlide : [])
+    console.log(slideIndex, slides, "11111111111")
+    let currentSlide = []
+    if (slideIndex > slides.length - 1) {
+      dispatch(updateSlideIndex(slides.length - 1))
+      currentSlide = slides[slides.length - 1].elements
+    } else {
+      currentSlide = slides[slideIndex].elements
+    }
+    setElementList(currentSlide)
   }, [slides, slideIndex])
 
   // 点击画布的空白区域：清空焦点元素、设置画布焦点、清除文字选区

@@ -3,7 +3,9 @@ import { Slide, SlideTheme } from "@/types/slides"
 export interface SlideState {
   slides: Slide[]
   theme: SlideTheme
-  slideIndex: number
+  slideIndex: number,
+  snapshotCursor: number,
+  snapshotLength: number,
 }
 
 export interface KeyboardState {

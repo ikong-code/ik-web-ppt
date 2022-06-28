@@ -5,6 +5,7 @@ import {
   updateSlideIndex,
   setSlides,
   addSlides,
+  addSlidesToNext,
   deleteSlides,
 } from "@/store/slidesReducer"
 import { setActiveElementIdList } from "@/store/canvasReducer"
@@ -23,6 +24,20 @@ const useSlideHandler = () => {
       },
     }
     dispatch(addSlides(emptySlide))
+    dispatch(setActiveElementIdList([])) // 重置当前选择的element
+  }
+
+  // 创建一页空白页并添加到指定的下一页
+  const createSlideToNext = (id: string) => {
+    const emptySlide: Slide = {
+      id: createRandomCode(8),
+      elements: [],
+      background: {
+        type: "solid",
+        color: theme.backgroundColor,
+      },
+    }
+    dispatch(addSlidesToNext({ targetId: id, slide: emptySlide }))
     dispatch(setActiveElementIdList([])) // 重置当前选择的element
   }
 
@@ -52,6 +67,7 @@ const useSlideHandler = () => {
 
   return {
     createSlide,
+    createSlideToNext,
     resetSlides,
     deleteSlide,
     updateSlidesList,
