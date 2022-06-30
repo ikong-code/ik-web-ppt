@@ -44,7 +44,6 @@ const HeaderTools = () => {
   }
 
   const handleUndo = () => {
-    console.log(snapshotCursor)
     if(snapshotCursor > 0) {
       dispatch(asyncUndo({type: "undo", data: snapshotCursor}))
     } else {

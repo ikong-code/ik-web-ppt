@@ -61,7 +61,6 @@ const CanvasContainer = () => {
   )
 
   useEffect(() => {
-    console.log(slideIndex, slides, "11111111111")
     let currentSlide = []
     if (slideIndex > slides.length - 1) {
       dispatch(updateSlideIndex(slides.length - 1))

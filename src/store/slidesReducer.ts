@@ -72,16 +72,13 @@ export const slidesReducer = createSlice({
       const copySlides = cloneDeep(state.slides)
       const id = action.payload
       const tarIdx = copySlides.findIndex((slide) => slide.id === id)
-      console.log(tarIdx, state.slideIndex, "tarIdx")
       if (tarIdx >= -1) {
         if (tarIdx === state.slideIndex) {
           if (tarIdx >= copySlides.length - 1) {
-            console.log(1111)
             state.slideIndex = copySlides.length - 2
           }
         }
         copySlides.splice(tarIdx, 1)
-        console.log(state.slideIndex, copySlides, "copySlides")
         state.slides = [...copySlides]
       }
     },
@@ -113,7 +110,6 @@ export const slidesReducer = createSlice({
       state.slides[slideIndex].elements = elements as PPTElement[]
     },
     initSnapshot: (state) => {
-      console.log(123)
 
       state.snapshotCursor = 0
       state.snapshotLength = 1
@@ -125,7 +121,6 @@ export const slidesReducer = createSlice({
       let snapshotLength = state.snapshotLength
       state.snapshotLength = snapshotLength + 1
       state.snapshotCursor = snapshotCursor + 1
-      console.log(state.snapshotCursor, "state.snapshotCursor")
       const setIndexDB = () => {
         return new Promise((resolve, reject) => {
           indexDB

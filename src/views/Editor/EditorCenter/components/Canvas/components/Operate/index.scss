@@ -6,6 +6,13 @@
   &.multi-select {
     opacity: 0;
   }
+  .operate-del{
+    position: absolute;
+    left: 6px;
+    top: -24px;
+    width: 50px;
+    cursor: pointer;
+  }
 
   .animation-index {
     position: absolute;

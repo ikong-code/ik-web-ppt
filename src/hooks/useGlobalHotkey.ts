@@ -22,11 +22,9 @@ const useGlobalHotKey = (isScreening = false) => {
   const { deleteElement } = useDeleteElement()
 
   const remove = () => {
-    console.log(!!activeElementIdList.length)
     if (!!activeElementIdList.length) {
       deleteElement(slides, slideIndex, activeElementIdList)
     } else if (thumbnailsFocus) {
-      console.log(slides[slideIndex].id)
       deleteSlides(slides[slideIndex].id)
     }
   }
@@ -35,7 +33,6 @@ const useGlobalHotKey = (isScreening = false) => {
     const keydownListener = (e: KeyboardEvent) => {
       const { ctrlKey, metaKey } = e
       const key = e.key.toLowerCase()
-      console.log(e.key, ctrlKey)
 
       // 下一页
       if (e.key === "arrowdown" || key === "arrowright") {

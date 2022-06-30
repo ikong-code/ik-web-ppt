@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react"
-import { throttle } from "lodash"
+import { useNavigate } from "react-router-dom"
 import { Dropdown, Menu } from "antd"
 import classnames from "classnames"
 import { useDispatch, useSelector } from "react-redux"
@@ -14,6 +14,7 @@ import { setScreening } from "@/store/screenReducer"
 import "./index.scss"
 
 const Screen = () => {
+  const navigate = useNavigate()
   const slides = useSelector((state: any) => state.slides.slides)
   const slideIndex = useSelector((state: any) => state.slides.slideIndex)
   const viewportRatio = useSelector((state: any) => state.canvas.viewportRatio)
@@ -56,6 +57,7 @@ const Screen = () => {
 
   // 结束放映
   const handleExitScreening = () => {
+    
     exitScreening()
   }
 

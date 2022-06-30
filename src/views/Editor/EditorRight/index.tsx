@@ -37,7 +37,6 @@ const EditorRight = () => {
 
   const handleSlideSetting = (props: { [key: string]: string }) => {
     dispatch(updateSlides(props))
-    console.log(props)
   }
 
   // 获取对应tab下的配置组件

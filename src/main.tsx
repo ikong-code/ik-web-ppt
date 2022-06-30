@@ -6,6 +6,7 @@ import { Provider } from "react-redux"
 import "./index.scss"
 import "./globle.scss"
 import "./assets/iconfont/iconfont.css"
+import "antd/dist/antd.less"
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <Provider store={store}>

@@ -10,7 +10,6 @@ const WebPpt = () => {
   const slides = useSelector((state: any) => state.slides.slides)
   const slideIndex = useSelector((state: any) => state.slides.slideIndex)
   const dispatch = useDispatch()
-  // opendIndexedDB()
 
   useEffect(() => {
     const copySlides = cloneDeep(slides)

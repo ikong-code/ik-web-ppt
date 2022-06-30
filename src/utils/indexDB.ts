@@ -10,10 +10,8 @@ class IndexDB {
   }
   onsuccess = (event: any) => {
     this.db = event.target.result;
-    console.log("连接成功");
   };
   onerror = (event: any) => {
-    console.log("连接失败");
   };
   // 数据库创建或升级的时候会触发
   onupgradeneeded = (event: any) => {
@@ -46,9 +44,7 @@ class IndexDB {
   }
   /**增加 */
   add = (data: any) => {
-    console.log(data, '123')
     try {
-      console.log(this.db)
       const next = this.db.transaction([storeName], "readwrite").objectStore(storeName).add(data);
       next.onsuccess = this.addOnSuccess;
       next.onerror = this.addOnError;
@@ -71,7 +67,6 @@ class IndexDB {
       const request = objectStore.getAll()
       request.onsuccess = (event: any) => {
         if (event.target.result) {
-          console.log(event.target.result)
           resolve([...(event?.target?.result || [])])
         } else {
           reject([])
@@ -91,7 +86,6 @@ class IndexDB {
       const request = objectStore.delete(id)
       request.onsuccess = (event: any) => {
         console.log("数据删除成功");
-        console.log(event)
           resolve(true)
       };
       request.onerror = (event: any) => {
@@ -102,10 +96,8 @@ class IndexDB {
   };
   // 删除数据库
   clear = () => {
-    console.log('clearing')
       const request = window.indexedDB.deleteDatabase(dbName)
       return new Promise((resolve, reject) => {
-      console.log('clearing 111', request)
       request.onsuccess = () => {
         console.log('数据全部清理成功')
         resolve(true)
@@ -135,43 +127,3 @@ class IndexDB {
 }
 
 export const indexDB = new IndexDB()
-
-// export const opendIndexedDB = () => {
-//   return new Promise((resolve, reject) => {
-//     const indexedDB = window.indexedDB
-//     const request = indexedDB.open(dbName, version)
-//     let db = null
-//     request.onsuccess = function(event: any) {
-//       db = event.target.result
-//       resolve(event.target.result)
-//     }
-
-//     request.onerror = function(event: any) {
-//       reject(event)
-//     }
-
-//     // 数据库创建或升级的时候会触发
-//     request.onupgradeneeded = function(event: any) {
-//       console.log('onupgradeneeded', event)
-//       db = event.target.result
-//       resolve(db)
-//     }
-//   })
-// }
-
- // 关闭数据库
-//  const closeIndexedDB = () => {
-//   return new Promise((resolve, reject) => {
-//     const indexedDB = window.indexedDB
-//     const request = indexedDB.open(dbName, version)
-   
-//     request.onsuccess = function(event: any) {
-//       const db = event.target.result
-//       db.close()
-//       console.log('db 已关闭')
-//     }
-//     request.onerror = function(event: any) {
-//       reject(event)
-//     }
-//   })
-// }

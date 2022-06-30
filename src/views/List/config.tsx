@@ -8,7 +8,7 @@ export interface IActions {
 
 export const getColumns = ( { handlePlay, handleEdit, handleDelete }: IActions ) => [
   {
-    title: "PPT名称",
+    title: "XPPT名称",
     dataIndex: "name",
     key: "name",
   },
@@ -24,8 +24,8 @@ export const getColumns = ( { handlePlay, handleEdit, handleDelete }: IActions )
   },
   {
     title: "发布时间",
-    dataIndex: "createTime",
-    key: "createTime",
+    dataIndex: "createtime",
+    key: "createtime",
   },
   {
     title: "操作",

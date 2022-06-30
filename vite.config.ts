@@ -10,7 +10,8 @@ const variablePath = normalizePath(
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: './',
+  base: 'public/', // 部署到测试环境要用到
+  // base: './',
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
@@ -19,10 +20,15 @@ export default defineConfig({
   },
   plugins: [react()],
   server: {
-    hmr: true,
-    watch: {
-      usePolling: true,
-    },
+    proxy: {
+      '/ppt': {
+        // target: 'http://api.chennick.wang/api/',
+        // target: 'http://10.0.10.207:7001',
+        target: 'http://127.0.0.1:7002',
+        changeOrigin: true,
+        // rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
   },
   // css 相关的配置
   css: {

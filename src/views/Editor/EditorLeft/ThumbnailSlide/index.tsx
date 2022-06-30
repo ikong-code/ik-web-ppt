@@ -34,7 +34,6 @@ const ThumbnailSlide = ({ slide, size, visible }: IProps) => {
     createSlideToNext(slide.id)
   }
   const handleDeletePage = () => {
-    console.log(slide.id, "slide.id")
     deleteSlide(slide.id)
   }
 

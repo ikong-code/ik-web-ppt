@@ -6,7 +6,7 @@ import { updateSlides } from "@/store/slidesReducer"
 const useDeleteElement = () => {
   const dispatch = useDispatch()
 
-  // 删除全部选中元素
+  // 删除选中元素
   const deleteElement = (
     slides: Slide[],
     slideIndex: number,

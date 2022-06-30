@@ -1,8 +1,10 @@
-import { useMemo } from "react"
+import { useMemo, useState } from "react"
 import { createForm } from "@formily/core"
 import { createSchemaField } from "@formily/react"
 import { Modal, Button } from "antd"
 import { UploadOutlined } from "@ant-design/icons"
+import axios from '@/service'
+import api from '@/service/api'
 import { Form, FormItem, Input, NumberPicker, Upload } from "@formily/antd"
 import { schema } from "./config"
 
@@ -22,7 +24,7 @@ const IDUpload = (props: any) => {
 
 const CreatePPt = ({ params = {}, onOk, onCancel }: any) => {
   const form = useMemo(() => createForm(), [])
-
+  const [confirmLoading, setConfirmLoading] = useState<boolean>(false)
   const { title = "创建" } = params
 
   const SchemaField = createSchemaField({
@@ -35,11 +37,14 @@ const CreatePPt = ({ params = {}, onOk, onCancel }: any) => {
   })
 
   const handleOk = async () => {
-    const values = await form.submit()
-    onOk()
+    const values: any = await form.submit()
+    setConfirmLoading(true)
+    const result = await axios.post(api.add, { ...values, username: 'aaa' })
+    setConfirmLoading(false)
+    onOk(result?.data?.id)
   }
   return (
-    <Modal visible title={title} onOk={handleOk} onCancel={onCancel}>
+    <Modal visible title={title} onOk={handleOk} confirmLoading={confirmLoading} onCancel={onCancel}>
       <Form form={form} labelCol={6} wrapperCol={10}>
         <SchemaField schema={schema} />
       </Form>
