@@ -41,6 +41,16 @@ const useSlideHandler = () => {
     dispatch(setActiveElementIdList([])) // 重置当前选择的element
   }
 
+  /** 复制并粘贴幻灯片 */
+  const coptyAndPasteSlide = (slide: Slide) => {
+    const newSlide: Slide = {
+      ...slide,
+      id: createRandomCode(8),
+    }
+    dispatch(addSlidesToNext({ targetId: slide.id, slide: newSlide }))
+    dispatch(setActiveElementIdList([])) // 重置当前选择的element
+  }
+
   // 重置幻灯片
   const resetSlides = () => {
     const emptySlide: Slide = {
@@ -71,6 +81,7 @@ const useSlideHandler = () => {
     resetSlides,
     deleteSlide,
     updateSlidesList,
+    coptyAndPasteSlide
   }
 }
 

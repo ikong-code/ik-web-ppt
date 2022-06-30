@@ -5,15 +5,46 @@
     align-items: center;
     justify-content: space-between;
     height: 60px;
-    padding: 0 15px;
+    padding: 0 30px;
     border-bottom: 1px solid #eee;
-    background: #fff;
+    background-color: #262a30;
+      color: #fff;
+    .header-left{
+      display: flex;
+      align-items: center;
+      img{
+        width: 30px;
+      }
+      span:first-of-type{
+        font-size: 30px;
+        margin: 0 12px;
+      }
+      span:last-of-type{
+        font-size: 14px;
+      }
+    }
+    .header-right{
+      font-size: 14px;
+    }
+      
   }
   &__content {
+    .content-header{
+      background-color: #fff;
+      padding: 12px;
+      margin-bottom: 12px;;
+      span{
+        font-weight: 600;
+      }
+      display: flex;
+      justify-content: space-between;
+    }
     height: calc(100% - 80px);
     width: 1200px;
     margin: 20px auto;
-   
+    .ant-table-thead .ant-table-cell{
+      background-color: #fff;
+    }
     .loading {
       width: 100%;
       text-align: center;

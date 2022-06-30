@@ -32,7 +32,7 @@ const useScreening = () => {
     if (isFullscreen()) exitFullscreen()
     // setTimeout(() => {
       if(!!isScreening) {
-        window.location.replace(`/#/`)
+        window.location.replace(`/xppt/`)
       }
     // }, 100)
     

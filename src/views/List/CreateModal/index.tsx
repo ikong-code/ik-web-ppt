@@ -25,7 +25,7 @@ const IDUpload = (props: any) => {
 const CreatePPt = ({ params = {}, onOk, onCancel }: any) => {
   const form = useMemo(() => createForm(), [])
   const [confirmLoading, setConfirmLoading] = useState<boolean>(false)
-  const { title = "创建" } = params
+  const { title = "创建", username } = params
 
   const SchemaField = createSchemaField({
     components: {
@@ -39,7 +39,7 @@ const CreatePPt = ({ params = {}, onOk, onCancel }: any) => {
   const handleOk = async () => {
     const values: any = await form.submit()
     setConfirmLoading(true)
-    const result = await axios.post(api.add, { ...values, username: 'aaa' })
+    const result = await axios.post(api.add, { ...values, username })
     setConfirmLoading(false)
     onOk(result?.data?.id)
   }

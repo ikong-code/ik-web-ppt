@@ -10,8 +10,8 @@ const variablePath = normalizePath(
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: 'public/', // 部署到测试环境要用到
-  // base: './',
+  // base: 'http://tms.uban360.net/xppt/public/', // 部署到测试环境要用到
+  base: './',
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
@@ -22,9 +22,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/ppt': {
-        // target: 'http://api.chennick.wang/api/',
-        // target: 'http://10.0.10.207:7001',
-        target: 'http://127.0.0.1:7002',
+        target: 'http://127.0.0.1:7001',
         changeOrigin: true,
         // rewrite: (path) => path.replace(/^\/api/, '')
       }

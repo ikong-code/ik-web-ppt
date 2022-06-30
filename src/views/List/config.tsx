@@ -4,9 +4,10 @@ export interface IActions {
   handlePlay: (record: any) => void;
   handleEdit: (record: any) => void;
   handleDelete: (record: any) => void;
+  username: string | undefined
 }
 
-export const getColumns = ( { handlePlay, handleEdit, handleDelete }: IActions ) => [
+export const getColumns = ( { handlePlay, handleEdit, handleDelete, username }: IActions ) => [
   {
     title: "XPPT名称",
     dataIndex: "name",
@@ -19,8 +20,8 @@ export const getColumns = ( { handlePlay, handleEdit, handleDelete }: IActions )
   },
   {
     title: "作者",
-    dataIndex: "author",
-    key: "author",
+    dataIndex: "username",
+    key: "username",
   },
   {
     title: "发布时间",
@@ -32,10 +33,15 @@ export const getColumns = ( { handlePlay, handleEdit, handleDelete }: IActions )
     dataIndex: "operate",
     key: "operate",
     render: (text: string, record: any) => {
+      if(username === record.username) {
+        return (<Space>
+          <a onClick={() => handlePlay(record)}>演示</a>
+          <a onClick={() => handleEdit(record)}>编辑</a>
+          <a onClick={() => handleDelete(record)}>删除</a>
+        </Space>)
+      }
       return (<Space>
         <a onClick={() => handlePlay(record)}>演示</a>
-        <a onClick={() => handleEdit(record)}>编辑</a>
-        <a onClick={() => handleDelete(record)}>删除</a>
       </Space>)
     }
   },

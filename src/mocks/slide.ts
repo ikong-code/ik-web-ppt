@@ -41,7 +41,7 @@ const slides: Slide[] = [
         height: 188,
         lineHeight: 1.2,
         fontSize: "26px",
-        content: "KB-PPT",
+        content: "xm-PPT",
         rotate: 0,
         defaultFontName: "Microsoft Yahei",
         defaultColor: "#333",

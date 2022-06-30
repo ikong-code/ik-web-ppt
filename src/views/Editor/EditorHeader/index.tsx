@@ -28,7 +28,7 @@ const EditorHeader = () => {
 
   useEffect(() => {
     const getDetail = async () => {
-      const result = await axios.get(`/ppt/detail?id=${id}`)
+      const result = await axios.get(`/xppt/ppt/detail?id=${id}`)
       const { data } = result
       if(data) {
         dispatch(setSlides(data))

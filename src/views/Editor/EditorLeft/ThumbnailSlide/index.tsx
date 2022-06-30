@@ -20,12 +20,15 @@ const ThumbnailSlide = ({ slide, size, visible }: IProps) => {
   const dispatch = useDispatch()
   const viewportRatio = useSelector((state: any) => state.canvas.viewportRatio)
   const { backgroundStyle } = useSlideBackgroundStyle()
-  const { createSlideToNext, updateSlidesList, resetSlides, deleteSlide } =
+  const { createSlideToNext, updateSlidesList, resetSlides, coptyAndPasteSlide, deleteSlide } =
     useSlideHandler()
   const { enterScreening } = useScreening()
 
   const handleClipPage = () => {}
-  const handleCopyPage = () => {}
+  const handleCopyPage = () => {
+    console.log(slide)
+    coptyAndPasteSlide(slide)
+  }
   const handlePastePage = () => {}
   const handleCurPlay = () => {
     enterScreening()
@@ -44,10 +47,10 @@ const ThumbnailSlide = ({ slide, size, visible }: IProps) => {
         //   label: <div onClick={handleClipPage}>剪贴页面</div>,
         //   key: "clip-page",
         // },
-        // {
-        //   label: <div onClick={handleCopyPage}>复制页面</div>,
-        //   key: "copy-page",
-        // },
+        {
+          label: <div onClick={handleCopyPage}>复制并粘贴页面</div>,
+          key: "copy-page",
+        },
         // {
         //   label: <div onClick={handlePastePage}>粘贴页面</div>,
         //   key: "paste-page",
