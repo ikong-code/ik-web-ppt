@@ -1,0 +1,21 @@
+.row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  &>button{
+    margin-right: 10px;
+    &:last-of-type{
+      margin: 0;
+    }
+  }
+}
+
+.origin-image {
+  height: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: $lightGray;
+  margin-bottom: 10px;
+}

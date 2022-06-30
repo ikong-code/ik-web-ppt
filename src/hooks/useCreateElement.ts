@@ -37,8 +37,8 @@ export default () => {
 
     setTimeout(() => {
       dispatch(setEditorareaFocus(true))
+      dispatch(addSnapshot())
     }, 0)
-    dispatch(addSnapshot())
   }
 
   /**

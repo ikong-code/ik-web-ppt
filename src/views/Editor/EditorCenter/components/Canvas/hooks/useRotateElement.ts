@@ -1,9 +1,6 @@
-import { Ref } from 'react'
-import { useMainStore, useSlidesStore } from '@/store'
 import { PPTElement, PPTTextElement, PPTImageElement, PPTShapeElement } from '@/types/slides'
-// import useHistorySnapshot from '@/hooks/useHistorySnapshot'
 import { useSelector, useDispatch } from 'react-redux'
-import { updateSlides } from '@/store/slidesReducer'
+import { updateSlides, addSnapshot } from '@/store/slidesReducer'
 
 /**
  * 计算给定坐标到原点连线的弧度
@@ -19,8 +16,6 @@ const getAngleFromCoordinate = (x: number, y: number) => {
 export default (elementList: PPTElement[], viewportRef: HTMLElement | undefined) => {
   const dispatch = useDispatch()
   const canvasScale = useSelector((state: any) => state.canvas.canvasScale)
-
-  // const { addHistorySnapshot } = useHistorySnapshot()
 
   let newElementList = [...elementList]
 
@@ -76,7 +71,7 @@ export default (elementList: PPTElement[], viewportRef: HTMLElement | undefined)
       if (elOriginRotate === angle) return
 
       dispatch(updateSlides({ elements: newElementList }))
-      // addHistorySnapshot()
+      dispatch(addSnapshot())
     }
   }
 

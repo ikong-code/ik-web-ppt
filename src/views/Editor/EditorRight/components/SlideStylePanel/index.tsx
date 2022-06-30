@@ -1,7 +1,13 @@
 import { Divider, Button, Popover } from "antd"
 import ColorPicker from "@/components/ColorPicker"
-import classnames from "classnames"
+import FileInput from "@/components/FileInput"
+import { cloneDeep } from 'lodash'
+import {  } from '@/store/slidesReducer'
+import { getImageDataURL } from "@/utils/image"
+import axios from '@/service'
+import api from '@/service/api'
 import { Slide } from "@/types/slides"
+import './index.scss'
 
 interface Style {
   [key: string]: string | number | undefined
@@ -13,20 +19,66 @@ interface TitleItem {
 }
 
 interface IProps {
+  slides: Slide[]
   slideInfo: Slide
-  onSlideSetting: (values: any) => void
+  onSlideSetting: (values: any, isSetting: boolean) => void
+  onAllSlideSetting: (slides: Slide[]) => void
 }
 
-const SlideStylePanel = ({ slideInfo, onSlideSetting }: IProps) => {
-  const handleSlideStyle = (value: string | boolean, type: string) => {
-    onSlideSetting({ [type]: value })
-  }
+const SlideStylePanel = ({ slides, slideInfo, onSlideSetting, onAllSlideSetting }: IProps) => {
 
   // 更新幻灯片的background配置
   const handleSlidebackground = (value: string | boolean, type: string) => {
     onSlideSetting({
       background: { ...(slideInfo.background || {}), [type]: value },
+    }, false)
+  }
+
+  const handleReplaceImage = async (files: any) => {
+    const imageFile = files[0]
+
+    const file = files[0]
+    if (!file) return
+    
+    const result = await axios.post(api.upload, files)
+
+    if (!imageFile) return
+    const background = {
+      ...slideInfo.background,
+      type: 'image',
+      image: result.data,
+      imageSize: 'cover',
+    }
+    onSlideSetting({
+      background,
+    }, true)
+  }
+
+  /** 删除背景图片时，需要将type换为纯色背景 */
+  const handleDelete = () => {
+    const background = {
+      ...slideInfo.background,
+      type: 'solid',
+      image: '',
+      imageSize: 'cover',
+    }
+    onSlideSetting({
+      background,
+    }, true)
+  }
+
+  /** 设置背景图片到全部幻灯片 */
+  const handleSettingAll = () => {
+    const list = cloneDeep(slides)
+    list.forEach(i => {
+      i.background = {
+        ...i.background,
+        type: slideInfo?.background?.type as "image" | "solid" | "gradient",
+        image: slideInfo?.background?.image,
+        imageSize: slideInfo?.background?.imageSize,
+      }
     })
+    onAllSlideSetting(list)
   }
 
   return (
@@ -53,6 +105,25 @@ const SlideStylePanel = ({ slideInfo, onSlideSetting }: IProps) => {
       </div>
       <div className="row btn-group"></div>
       <Divider />
+      {slideInfo?.background?.image && <div
+        className="origin-image"
+        style={{ backgroundImage: `url(${slideInfo?.background?.image})` }}
+      />}
+      <div className="row btn-group">
+        <Button>
+          <FileInput onChange={handleReplaceImage}>添加背景图片</FileInput>
+        </Button>
+        {
+          slideInfo?.background?.image && <Button onClick={handleDelete}>
+            删除
+          </Button>
+        }
+      </div>
+      {slideInfo?.background?.image && <div className="row btn-group">
+        <Button onClick={handleSettingAll}>
+          应用背景到全部
+        </Button>
+      </div>}
     </div>
   )
 }

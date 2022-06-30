@@ -4,7 +4,6 @@ import { OperateResizeHandlers, OperateBorderLines } from '@/types/edit'
 
 
 export default (width: number, height: number) => {
-  const canvasScale = useSelector((state: any) => state.canvas.canvasScale)
   // 元素缩放点
   const resizeHandlers = useMemo(() => {
     return [

@@ -1,10 +1,13 @@
 import { useMemo, useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { elementTabs, slideTabs } from "./config"
+import { debounce } from 'lodash'
+import { Slide } from '@/types/slides'
 import StylePanel from "./components/StylePanel"
 import SlidePanel from "./components/SlideStylePanel"
 import classnames from "classnames"
-import { updateSlides } from "@/store/slidesReducer"
+import { updateSlides, setSlides } from "@/store/slidesReducer"
+import { addElement, addSnapshot } from "@/store/slidesReducer"
 import "./index.scss"
 
 const EditorRight = () => {
@@ -35,8 +38,18 @@ const EditorRight = () => {
     setCurTab(tab)
   }
 
-  const handleSlideSetting = (props: { [key: string]: string }) => {
+  const handleSlideSetting = (props: { [key: string]: string }, isSetting: boolean) => {
+    console.log(props, 'props')
     dispatch(updateSlides(props))
+    /** 背景颜色改变不进行快照缓存 */
+    if(isSetting) {
+      dispatch(addSnapshot())
+    }
+  }
+
+  const handleAllSlideSetting = (slides: Slide[]) => {
+    dispatch(setSlides(slides))
+    dispatch(addSnapshot())
   }
 
   // 获取对应tab下的配置组件
@@ -52,8 +65,10 @@ const EditorRight = () => {
       case "slide_style":
         component = (
           <SlidePanel
+            slides={slides}
             slideInfo={slides[slideIndex]}
             onSlideSetting={handleSlideSetting}
+            onAllSlideSetting={handleAllSlideSetting}
           />
         )
         break

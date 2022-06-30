@@ -22,15 +22,14 @@ const List = () => {
 
   useEffect(() => {
     /** 获取用户登录信息 没有登陆信息跳转登录页 */
-    // const ssoU = Cookies.get('sso_u')
-    // if(ssoU) {
-    //   const userInfoStr = Base64.decode(ssoU)
-    //   const userInfo = JSON.parse(userInfoStr || '{}')
-    //   setUsername(userInfo?.name_)
-    // } else {
-    //   window.location.href = `http://sso.uban360.net/ca/baas/login?target=${window.location.href}`
-    //   // navigate(`http://sso.uban360.net/ca/baas/login?target=${window.location.href}`)
-    // }
+    const ssoU = Cookies.get('sso_u')
+    if(ssoU) {
+      const userInfoStr = Base64.decode(ssoU)
+      const userInfo = JSON.parse(userInfoStr || '{}')
+      setUsername(userInfo?.name_)
+    } else {
+      window.location.href = `http://sso.uban360.net/ca/baas/login?target=${window.location.href}`
+    }
     getList()
   }, [])
 

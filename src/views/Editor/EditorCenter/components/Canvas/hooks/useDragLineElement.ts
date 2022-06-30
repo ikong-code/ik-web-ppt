@@ -1,8 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { PPTElement, PPTLineElement } from '@/types/slides'
 import { OperateLineHandler, OperateLineHandlers } from '@/types/edit'
-import { updateSlides } from '@/store/slidesReducer'
-// import useHistorySnapshot from '@/hooks/useHistorySnapshot'
+import { updateSlides, addSnapshot } from '@/store/slidesReducer'
 
 interface AdsorptionPoint {
   x: number;
@@ -12,7 +11,6 @@ interface AdsorptionPoint {
 export default (elementList: PPTElement[]) => {
   const canvasScale = useSelector((state: any) => state.canvas.canvasScale)
   const dispatch = useDispatch()
-  // const { addHistorySnapshot } = useHistorySnapshot()
 
   // 拖拽线条端点
   const dragLineElement = (e: MouseEvent, element: PPTLineElement, command: OperateLineHandler) => {
@@ -180,7 +178,7 @@ export default (elementList: PPTElement[]) => {
       if (startPageX === currentPageX && startPageY === currentPageY) return
 
       dispatch(updateSlides({ elements: elementList }))
-      // addHistorySnapshot()
+      dispatch(addSnapshot())
     }
   }
 

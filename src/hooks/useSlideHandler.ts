@@ -7,6 +7,7 @@ import {
   addSlides,
   addSlidesToNext,
   deleteSlides,
+  addSnapshot
 } from "@/store/slidesReducer"
 import { setActiveElementIdList } from "@/store/canvasReducer"
 const useSlideHandler = () => {
@@ -25,6 +26,7 @@ const useSlideHandler = () => {
     }
     dispatch(addSlides(emptySlide))
     dispatch(setActiveElementIdList([])) // 重置当前选择的element
+    dispatch(addSnapshot())
   }
 
   // 创建一页空白页并添加到指定的下一页
@@ -39,6 +41,7 @@ const useSlideHandler = () => {
     }
     dispatch(addSlidesToNext({ targetId: id, slide: emptySlide }))
     dispatch(setActiveElementIdList([])) // 重置当前选择的element
+    dispatch(addSnapshot())
   }
 
   /** 复制并粘贴幻灯片 */
@@ -49,6 +52,7 @@ const useSlideHandler = () => {
     }
     dispatch(addSlidesToNext({ targetId: slide.id, slide: newSlide }))
     dispatch(setActiveElementIdList([])) // 重置当前选择的element
+    dispatch(addSnapshot())
   }
 
   // 重置幻灯片
@@ -64,15 +68,18 @@ const useSlideHandler = () => {
     dispatch(updateSlideIndex(0))
     dispatch(setActiveElementIdList([])) // 重置当前选择的element
     dispatch(setSlides([emptySlide]))
+    dispatch(addSnapshot())
   }
 
   // 删除当前页，若将删除全部页面，则执行重置幻灯片操作
   const deleteSlide = (targetSlidesId: number | string) => {
     dispatch(deleteSlides(targetSlidesId))
+    dispatch(addSnapshot())
   }
 
   const updateSlidesList = (slidesList: Slide[]) => {
     dispatch(setSlides(slidesList))
+    dispatch(addSnapshot())
   }
 
   return {

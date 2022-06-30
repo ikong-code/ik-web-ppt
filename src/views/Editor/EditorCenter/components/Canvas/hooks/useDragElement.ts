@@ -5,14 +5,12 @@ import { PPTElement } from "@/types/slides"
 import { AlignmentLineProps } from "@/types/edit"
 import { VIEWPORT_SIZE } from "@/config/canvas"
 import { getRectRotatedRange, AlignLine, uniqAlignLines } from "@/utils/element"
-import { updateSlides } from "@/store/slidesReducer"
-// import useHistorySnapshot from '@/hooks/useHistorySnapshot'
+import { updateSlides, addSnapshot } from "@/store/slidesReducer"
 
 export default (alignmentLines: Ref<AlignmentLineProps[] | null> | any) => {
   const canvasScale = useSelector((state: any) => state.canvas.canvasScale)
   const viewportRatio = useSelector((state: any) => state.canvas.viewportRatio)
   const dispatch = useDispatch()
-  // const { addHistorySnapshot } = useHistorySnapshot()
 
   const dragElement = (
     e: MouseEvent,
@@ -347,7 +345,7 @@ export default (alignmentLines: Ref<AlignmentLineProps[] | null> | any) => {
       if (startPageX === currentPageX && startPageY === currentPageY) return
 
       dispatch(updateSlides({ elements: elementList }))
-      // addHistorySnapshot()
+      dispatch(addSnapshot())
     }
   }
 
