@@ -8,6 +8,8 @@ import useCreateElement from "@/hooks/useCreateElement"
 import ShapeList from "./Shapes"
 import { ShapePoolItem } from "@/config/shapes"
 import { redo, undo, asyncUndo } from '@/store/slidesReducer'
+import axios from '@/service'
+import api from '@/service/api'
 
 import "./index.scss"
 
@@ -24,11 +26,13 @@ const HeaderTools = () => {
     dispatch(setCreatingElement({ type: "text" }))
   }
 
-  const insertImageElement = (files: File[]) => {
-    const imageFile = files[0]
-    if (!imageFile) return
-    getImageDataURL(imageFile).then((dataURL: string) => {
-      createImageElement(dataURL, viewportRatio)
+  const insertImageElement = async (files: File[]) => {
+    const file = files[0]
+    if (!file) return
+    
+    const result = await axios.post(api.upload, files)
+    getImageDataURL(file).then((dataURL: string) => {
+      createImageElement(dataURL, result.data, viewportRatio)
     })
   }
 

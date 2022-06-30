@@ -3,6 +3,8 @@ import classnames from "classnames"
 import { PPTElement } from "@/types/slides"
 import FileInput from "@/components/FileInput"
 import { getImageDataURL } from "@/utils/image"
+import axios from '@/service'
+import api from '@/service/api'
 import "./index.scss"
 
 interface Style {
@@ -24,11 +26,17 @@ const ImageStylePanel = ({ elementInfo, onSetting }: IProps) => {
     onSetting({ [type]: value })
   }
   // 只是替换图片，宽高等样式不变
-  const handleReplaceImage = (files: any) => {
+  const handleReplaceImage = async (files: any) => {
     const imageFile = files[0]
+
+    const file = files[0]
+    if (!file) return
+    
+    const result = await axios.post(api.upload, files)
+
     if (!imageFile) return
     getImageDataURL(imageFile).then((dataURL) => {
-      onSetting({ src: dataURL })
+      onSetting({ src: result.data })
     })
   }
 

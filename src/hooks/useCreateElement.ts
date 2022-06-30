@@ -45,8 +45,8 @@ export default () => {
    * 创建图片元素
    * @param src 图片地址
    */
-  const createImageElement = (src: string, viewportRatio: number) => {
-    getImageSize(src).then(
+  const createImageElement = (dataURL: string, src: string, viewportRatio: number) => {
+    getImageSize(dataURL).then(
       ({ width, height }: { width: number; height: number }) => {
         const scale = height / width
         if (scale < viewportRatio && width > VIEWPORT_SIZE) {
