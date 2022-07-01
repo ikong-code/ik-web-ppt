@@ -10,8 +10,8 @@ const variablePath = normalizePath(
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: 'http://tms.uban360.net/xppt/public/', // 部署到测试环境要用到
-  // base: './',
+  // base: 'http://tms.uban360.net/xppt/public/', // 部署到测试环境要用到
+  base: './',
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
